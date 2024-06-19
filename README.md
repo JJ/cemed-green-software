@@ -9,7 +9,8 @@ verde](https://cemed.ugr.es/curso/24al01/)
 
 Se agrupa en los siguientes temas:
 
-1. Desarrollo ágil para eficiencia energética
+1. [Introducción](preso/intro.html)
+1. [Desarrollo ágil para eficiencia energética](preso/ágil.html)
 2. Bases físicas del consumo energético en ordenadores
 3. Concepto de profiling
 4. Profiling energético
