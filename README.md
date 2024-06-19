@@ -1,3 +1,5 @@
+![Software verde](img/green-software.jpeg)
+
 # Software verde
 
 Material para el [curso de verano del CEMED sobre software
