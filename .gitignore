@@ -162,3 +162,12 @@ cython_debug/
 
 # emacs
 *~
+
+# compilados
+onemax
+bitflip
+chromosomes
+xover
+
+# vscode
+.vscode/
