@@ -8,13 +8,14 @@ use v5.14;
 use lib qw(lib ../lib ../../lib);
 use Utils qw(process_pinpoint_output);
 
+my $dir = shift || "data/";
 my $preffix = shift || die "I need a prefix for the data files";
 my $command = shift || die "I need a (single) command to run";
 my $ITERATIONS = 15;
 my ($mon,$day,$hh,$mm,$ss) = localtime() =~ /(\w+)\s+(\d+)\s+(\d+)\:(\d+)\:(\d+)/;
 my $suffix = "$day-$mon-$hh-$mm-$ss";
 
-open my $fh, ">", "../../data/$preffix-$suffix.csv";
+open my $fh, ">", "$dir/$preffix-$suffix.csv";
 say $fh "Platform,size,GPU,PKG,seconds";
 
 for my $l ( qw(512 1024 2048) ) {
