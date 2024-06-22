@@ -37,3 +37,6 @@ clean:
 .NOEXPORT:
 
 ###############################################################################
+
+perf-chromosomes:
+	perf stat -e power/energy-cores/,power/energy-pkg/,power/energy-psys/ ./chromosomes
