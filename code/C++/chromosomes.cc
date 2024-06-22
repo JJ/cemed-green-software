@@ -8,10 +8,10 @@ const unsigned ELEMENTS = 40000;
 int main(int argc, char *argv[])
 {
   std::minstd_rand engine;
-  // read first command line argument into variable length with default value 512
   unsigned length = (argc > 1) ? std::atoi(argv[1]) : 512;
   std::cout << "Length: " << length << std::endl;
-  std::tr2::dynamic_bitset<> *population = new std::tr2::dynamic_bitset<>[ELEMENTS];
+  std::vector<std::tr2::dynamic_bitset<>> population;
+  population.resize(ELEMENTS);
   auto start = std::chrono::high_resolution_clock::now();
   for (unsigned i = 0; i < ELEMENTS; ++i)
   {
@@ -22,8 +22,7 @@ int main(int argc, char *argv[])
   }
 
   std::cout << "Finished generation" << std::endl;
-  int population_length = population->size();
-  delete[] population;
+  int population_length = std::size(population);
   auto stop = std::chrono::high_resolution_clock::now();
 
   int the_time = std::chrono::nanoseconds(stop - start).count();
