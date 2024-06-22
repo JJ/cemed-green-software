@@ -64,25 +64,25 @@
                     <!-- Ejemplo: algoritmos evolutivos en C++ -->
                     <section>
                         <section><h1>Generación de cromosomas en C++</h1>
-                            <pre><code data-line-numbers="5,9-11|7,14|10,11">const unsigned ELEMENTS = 40000; // Código de Gustavo López
-const unsigned LENGTH	 =  2048;
-int main() {
+                            <pre><code data-line-numbers="4|6,7,12|8,13|9-11">const unsigned ELEMENTS = 40000;
+int main(int argc, char *argv[]){
   std::minstd_rand engine;
-  std::tr2::dynamic_bitset&lt;> * population = new std::tr2::dynamic_bitset&lt;>[ ELEMENTS ];
-  auto start = std::chrono::high_resolution_clock::now();
-  for (unsigned i = 0; i &lt; ELEMENTS; ++i) {
-    for (unsigned length = 16; length &lt;= LENGTH; length &lt;&lt;= 1) {
-       std::tr2::dynamic_bitset&lt;> bits(length);
-       for (unsigned i = 0; i &lt; length; ++i)
-           bits[i] = engine() & 1;
-      population[i] = bits;
-    }
+  unsigned length = (argc > 1) ? std::atoi(argv[1]) : 512;
+  std::cout << "Length: " << length << std::endl;
+  std::vector<std::tr2::dynamic_bitset<>> population;
+  population.resize(ELEMENTS);
+  for (unsigned i = 0; i < ELEMENTS; ++i) {
+    std::tr2::dynamic_bitset<> bits(length);
+    for (unsigned i = 0; i < length; ++i)
+      bits[i] = engine() & 1;
+    population[i] = bits;
   }
-  std::cout &lt;&lt; "Finished generation" &lt;&lt; std::endl;
-  delete [] population;
-  auto stop = std::chrono::high_resolution_clock::now();
-} </code></pre>
-  
+// Código adicional
+}
+ </code></pre>
+ <aside class='notes'>El primer highlight es para la parametrización
+ de la función; diferentes tamaños actuarán de forma diferente, y
+   habrá comportamientos no lineales cuando se salga de la caché, por ejemplo</aside>
 
                     </section>
                     
