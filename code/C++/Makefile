@@ -20,7 +20,7 @@ clean:
 	$(RM) -rf $(EXE) $(PERF) $(DAT) *.perf.old
 
 chromosomes-gprof:
-	g++ -pg chromosomes.cc -o $@
+	$(CXX) -pg chromosomes.cc -o $@
 
 ###############################################################################
 
