@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Green software - intro </title>
+		<title>Green software - ingeniería </title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -64,25 +64,27 @@
                     <!-- Ejemplo: algoritmos evolutivos en C++ -->
                     <section>
                         <section><h1>Generación de cromosomas en C++</h1>
-                            <pre><code data-line-numbers="4|6,7,12|8,13|9-11">const unsigned ELEMENTS = 40000;
-int main(int argc, char *argv[]){
+                            <pre><code data-line-numbers="3,4|4,6,7,13,15|11,12">#include &lt;tr2/dynamic_bitset>
+#include &lt;random>
+std::vector&lt;std::tr2::dynamic_bitset&lt;>>&
+  generate_chromosomes(unsigned int number_of_elements, unsigned int length){
   std::minstd_rand engine;
-  unsigned length = (argc > 1) ? std::atoi(argv[1]) : 512;
-  std::cout << "Length: " << length << std::endl;
-  std::vector<std::tr2::dynamic_bitset<>> population;
-  population.resize(ELEMENTS);
-  for (unsigned i = 0; i < ELEMENTS; ++i) {
-    std::tr2::dynamic_bitset<> bits(length);
-    for (unsigned i = 0; i < length; ++i)
+  static std::vector&lt;std::tr2::dynamic_bitset&lt;>> population;
+  population.resize(number_of_elements);
+  for (unsigned i = 0; i &lt; number_of_elements; ++i)
+  {
+    std::tr2::dynamic_bitset&lt;> bits(length);
+    for (unsigned i = 0; i &lt; length; ++i)
       bits[i] = engine() & 1;
     population[i] = bits;
   }
-// Código adicional
-}
- </code></pre>
+  return population;
+}</code></pre>
  <aside class='notes'>El primer highlight es para la parametrización
  de la función; diferentes tamaños actuarán de forma diferente, y
-   habrá comportamientos no lineales cuando se salga de la caché, por ejemplo</aside>
+   habrá comportamientos no lineales cuando se salga de la caché, por
+                    ejemplo. La función está modularizada, para poder analizarla
+                    de forma independiente</aside>
 
                     </section>
                     
