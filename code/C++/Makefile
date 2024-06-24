@@ -1,5 +1,11 @@
 ###############################################################################
-CXX=g++-10
+CXX=g++
+ifeq (/opt/homebrew/bin/g++-14,$(wildcard /opt/homebrew/bin/g++-14*))
+    CXX=g++-14
+else ifeq (/usr/bin/g++-10,$(wildcard /usr/bin/g++-10*))
+    CXX=g++-10
+endif
+
 CXXFLAGS = -g -march=native -O3 -std=c++2a -Wall
 
 ###############################################################################
