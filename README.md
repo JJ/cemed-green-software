@@ -15,6 +15,7 @@ Se agrupa en los siguientes temas:
    ordenadores](https://docs.google.com/presentation/d/1ZsAap01ROmXZiKleVN-6EAEClY82WSpQvXpZ5mh-8MA/edit?usp=sharing)
 4. [Organización del trabajo práctico](preso/trabajo-1.html)   
 5. [Concepto de profiling](https://docs.google.com/presentation/d/1agzc9AKpeNZCiy3Ttt2ciMsnR1ygMVQ9/edit#slide=id.p1)
+6. [Invitation to work, second step](preso/trabajo-2.html).
 6. Profiling energético
 7. Ingeniería de la optimización energética
 
