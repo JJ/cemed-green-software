@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
   std::cout << "Generated "
             << population_length
             << " chromosomes in "
-            << the_time
+            << the_time/1e9
             << std::endl;
 
   return the_time; // avoid code elision
