@@ -209,6 +209,13 @@ population.forEach((c) => {
                         </section>
 
 			<section><h1>Los compiladores permiten decidir qué instrucciones se incluyen en el ejecutable</h1>
+			  <h2 class='fragment'>Y opciones del compilador</h2>
+			  <pre><code data-line-numbers="1|3|4">g++-12
+			      -march=native
+			      -Ofast
+			      -std=c++17
+			      -Wall
+			      chromosomes.cc generate_chromosomes.cc -o chromosomes</code></pre>
 			</section>
 
 			<section><h1>Argumentos de JVM permiten cambiar el comportamiento energético</h1>
@@ -224,15 +231,30 @@ population.forEach((c) => {
 
 			</section>
 
+			<section><h1>Mucho margen en compiladores, menos en intérpretes y JVM</h1>
+			</section>
+
                     </section>
 
                     <!-- 2. Cambios de sistema para ejecución y de SO. -->
                     <section>
+		      <section><h1>Probar con diferentes máquinas, mismo SO</h1>
+			<h2 class='fragment'>Portátiles, más nuevos: mejor gestión</h2>
+		      </section>
+
+		      <section><h1>Cambiar Intel/Linux → Mac/Apple Silicon</h1>
+			<h2 class='fragment'>Las diferencias, sobre todo en M2/3, son dramáticas</h2>
+		      </section>
                     </section>
 
                     <!-- 3. Cambios en intérprete/compilador/herramientas base y dependencias. Cambios de lenguaje -->
-
                     <section>
+		      <section><h1>Diferentes lenguajes → diferente perfil de consumo</h1>
+			<h4 class='fragment'>Interpretados, tipos "duck" → alto consumo</h4>
+			<h3 class='fragment'>JVM, ¿otros runtimes? → consumo medio</h3>
+			<h2 class='fragment'>Lenguajes compilados → bajo consumo</h2>
+			<h1 class='fragment'>Lenguajes funcionales compilados → bajísimo consumo</h1>
+		      </section>
                     </section>
 
 		</div>
