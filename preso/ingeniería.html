@@ -143,6 +143,8 @@ done
 
 		    <section><h1>Hay que instrumentar la medición de consumo</h1>
 		      <h2 class='fragment'>Y trabajar con estadísticas</h2>
+
+		      <aside class='notes'>Dado que hay una multitud de factores en los sistemas modernos que influyen en la energía, desde el propio programa hasta lo que se esté ejecutando y la temperatura ambiente, es necesario trabajar con medias</aside>
 		    </section>
 
 </section>
@@ -175,13 +177,38 @@ done
 
                         <section><h1>Compilación sin info
                             depuración/optimización</h1>
-                            <h2 class="fragment">Menos uso de memoria, más
+                            <h2 class="fragment">Menos uso de memoria, menos
                                 CPU</h2>
                         </section>
 
                         <section><h1>Cambio en el uso de instrucciones
                             específicas de procesador</h1>
+
+			    <pre auto-line-numbers="2"><code>g++-14
+			      -march=native
+			      -std=c++2a
+			      -Wall
+			      chromosomes.cc generate_chromosomes.cc -o chromosomes</code></pre>
                         </section>
+
+			<section><h1>Los compiladores permiten decidir qué instrucciones se incluyen en el ejecutable</h1>
+			</section>
+
+			<section><h1>Argumentos de JVM permiten cambiar el comportamiento energético</h1>
+			  <h2 class='fragment'><code>-server</code> para optimizar, <code>-X</code> para diferentes parámetros</h2>
+			</section>
+
+			<section><h1>Python permite engancharlo con <code>perf</code></h1>
+			  <pre><code>python -X perf programa.py</code></pre>
+			</section>
+
+			<section><h1>node.js no tiene muchas opciones</h1>
+			  <h2 class='fragment'><code>--jitless</code> impide asignación de memoria...</h2>
+
+			</section>
+
+			
+			  
                     </section>
 
                     <!-- 2. Cambios de sistema para ejecución y de SO. -->
