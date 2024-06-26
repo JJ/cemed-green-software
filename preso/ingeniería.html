@@ -63,6 +63,7 @@
 
                     <!-- Ejemplo: algoritmos evolutivos en C++ -->
                     <section>
+		      
                         <section><h1>Generación de cromosomas en C++</h1>
                             <pre><code data-line-numbers="3,4|4,6,7,13,15|11,12">#include &lt;tr2/dynamic_bitset>
 #include &lt;random>
@@ -89,7 +90,7 @@ std::vector&lt;std::tr2::dynamic_bitset&lt;>>&
                         </section>
 
                         <section><h1>Compilamos con </h1>
-			  <pre auto-line-numbers="1|2|3"><code>g++-14
+			  <pre><code  data-line-numbers="1|2|3">g++-14
 			      -march=native
 			      -std=c++2a
 			      -Wall
@@ -97,7 +98,7 @@ std::vector&lt;std::tr2::dynamic_bitset&lt;>>&
 			</section>
 
 			<section><h1>Hay que medir las prestaciones</h1>
-			  <pre data-line-numbers="3,11|9-12|8"><code>#!/usr/bin/env sh
+			  <pre><code  data-line-numbers="3,11|9-12|8">#!/usr/bin/env sh
 FILENAME=$1
 for i in 512 1024 2048
 do
@@ -115,14 +116,13 @@ done
 			</section>
 
 			<section><h1>Midiendo en un Mac</h1>
-
 			  <pre><code>cat test-512.json | jq ". | .metrics.consumption"</code></pre>
-			  <pre class='fragment'>{
+			  <pre class='fragment'><code>{
   "ane_w": 0,
   "cpu_w": 4.5013532638549805,
   "gpu_w": 0.02891661413013935,
   "package_w": 4.530270099639893
-}</pre></section>
+}</code></pre>
 
 			<aside class='notes'>En un M2 no hay muchas más alternativas. Otros programas como pinpoint o perf son mucho más fáciles de usar</aside>
 
@@ -147,6 +147,23 @@ done
 		      <aside class='notes'>Dado que hay una multitud de factores en los sistemas modernos que influyen en la energía, desde el propio programa hasta lo que se esté ejecutando y la temperatura ambiente, es necesario trabajar con medias</aside>
 		    </section>
 
+		    <section><h1>Esta operación común permite establecer la línea base</h1>
+		      <h2 class='fragment'>Pero nos interesa una función específica</h2>
+		    </section>
+
+		    <section><h1>Midiendo operaciones específicas</h1>
+		      <pre data-line-numbers="2,7|9-11"><code>import { hashify } from "https://deno.land/x/saco@v0.0.2/index.js";
+import { countOnes, generateChromosomes } from "../lib/utils.js";
+const size = Deno.args[0];
+const NUMBER_OF_CHROMOSOMES = 40000;
+console.log("Size ", size);
+const population = generateChromosomes(size, NUMBER_OF_CHROMOSOMES);
+const fitnessArray = [];
+population.forEach((c) => {
+  fitnessArray.push(countOnes(c));
+});
+		      </code></pre>
+		    </section>
 </section>
 
                     <!-- 1. Cambios en la ejecución de los programas -->
