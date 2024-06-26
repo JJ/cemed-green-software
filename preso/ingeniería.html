@@ -112,7 +112,40 @@ do
     kill $!
 done
 			  </code></pre>
-                    </section>
+			</section>
+
+			<section><h1>Midiendo en un Mac</h1>
+
+			  <pre><code>cat test-512.json | jq ". | .metrics.consumption"</code></pre>
+			  <pre class='fragment'>{
+  "ane_w": 0,
+  "cpu_w": 4.5013532638549805,
+  "gpu_w": 0.02891661413013935,
+  "package_w": 4.530270099639893
+}</pre></section>
+
+			<aside class='notes'>En un M2 no hay muchas más alternativas. Otros programas como pinpoint o perf son mucho más fáciles de usar</aside>
+
+		    </section>
+
+		    <section><h1>Más fácil con <code>pinpoint</code></h1>
+			<pre><code>sub process_pinpoint_output {
+  my $output = shift;
+  if ($output !~ /0.00\s+J/) {
+      my ( $gpu, $pkg ) = $output =~ /(\d+\.\d+)\s+J/g;
+      my ( $seconds ) = $output =~ /(\d+\.\d+) seconds/;
+      return $gpu, $pkg,$seconds;
+    } else {
+      return 0,0,0;
+    }
+}	</code></pre>
+		    </section>
+
+		    <section><h1>Hay que instrumentar la medición de consumo</h1>
+		      <h2 class='fragment'>Y trabajar con estadísticas</h2>
+		    </section>
+
+</section>
 
                     <!-- 1. Cambios en la ejecución de los programas -->
                     <section>
