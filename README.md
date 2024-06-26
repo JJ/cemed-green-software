@@ -17,5 +17,5 @@ Se agrupa en los siguientes temas:
 5. [Concepto de profiling](https://docs.google.com/presentation/d/1agzc9AKpeNZCiy3Ttt2ciMsnR1ygMVQ9/edit#slide=id.p1)
 6. [Invitation to work, second step](preso/trabajo-2.html).
 6. Profiling energético
-7. Ingeniería de la optimización energética
+7. Ingeniería de la optimización energética, primera parte, segunda parte.
 
