@@ -170,3 +170,8 @@ xover
 
 # vscode
 .vscode/
+
+# cosas mac
+*.dSYM/
+.DS_Store
+
