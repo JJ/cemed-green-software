@@ -175,3 +175,10 @@ xover
 *.dSYM/
 .DS_Store
 
+# latex
+auto/
+*.aux
+*.bbl
+*.blg
+*.out
+*.pdf
