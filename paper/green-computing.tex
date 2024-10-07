@@ -1,15 +1,20 @@
 \documentclass[a4paper]{article}
-
+\usepackage{hyperref}
 \begin{document}
 
-\title{Teaching how to engineer greener software}
+\title{Engineering greener software}
 
 \author{JJ Merelo-Guervós}
 
 
 \maketitle
 
-\begin{abstract}
+\section{Duration}
+
+Proposed for a half-day (2 hours) tutorial.
+
+\section{Abstract}
+
 {\em Green} computing is a general term that describes a host of techniques that
 try to minimize the carbon footprint of software applications. As such, it is
 not a single body of knowledge, but a series of best practices that help reduce
@@ -19,8 +24,6 @@ time of designing a comprehensive syllabus that would help students develop the
 series of skills needed to identify energy bottlenecks and eliminate them. In
 this poster we will describe the different concepts involved, and how they will
 be delivered to guarantee the achievement of learning objectives.
-\end{abstract}
-
 Green computing \cite{kurp2008green} deals, in general, with reducing the
 environmental impact of the creation and use of computing resources. From the
 software perspective, it proposes maximizing the amount of work done for every
@@ -32,31 +35,45 @@ the different process involved, methodologies needed to carry out that
 assessment, and eventually design your code from the ground up or refactoring it
 to make it {\em greener} is a challenge.
 
-And it is a challenge that has been recently acknowledged by the joint IEEE/ACM
-task force in \cite{cc2020}. Environmental concerns is one of the skills
-mentioned in the draft competencies in software engineering as part of the
-needed ``behavioral attributes'' as well as in the
-Master's degree in Information Systems (IS), as part of the IS Strategy and
-Governance competence; the computer engineering set of draft competencies
-includes it as part of the Systems Resource Management subject matter. This
-again shows the inter-disciplinary content that needs to be considered even if
-the focus is on software engineering.
+\section{Motivation, target audience and interest for the SAC community}
 
-The final objective would be to get the student to understand how choices of
-hardware and software platform from the ground up will affect the environmental
-impact of the workload that is going to be created or refactored and which best
-practices need to be involved to reduce that impact. The syllabus proposed
+The challenge of introducing energy efficiency concerns into software
+engineering has been recently acknowledged by the joint IEEE/ACM task force in
+\cite{cc2020}. Environmental concerns is one of the skills mentioned in the
+draft competencies in software engineering as part of the needed ``behavioral
+attributes'' as well as in the Master's degree in Information Systems (IS), as
+part of the IS Strategy and Governance competence; the computer engineering set
+of draft competencies includes it as part of the Systems Resource Management
+subject matter. This again shows the inter-disciplinary content that needs to be
+considered even if the focus is on software engineering.
+
+Target audience includes, but is not limited to, \begin{itemize}
+  \item Computer scientists that want to create more sustainable implementations
+    for their applications and algorithms.
+  \item Software engineers with some experience that want to be familiarized
+    with best practices in energy efficiency.
+    \item Tertiary education teachers that want to introduce energy consumption
+      reduction into courses in software engineering.
+\end{itemize} 
+
+As indicated above, the joint IEEE/ACM task force has indicated their interest
+in introducing this kind of content into software engineering students.
+
+\section{Outline}
+
+ The syllabus proposed
 would, then, would be as follows:\begin{itemize}
 \item {\bf Understanding the hardware}: Computing units (CPU, GPU, memory) and their energy profiles. Energy-wise
   heterogeneous architectures. Energy consumption sensors and
   standard APIs to get measurements from them (e.g. RAPL). Interfaces to the
   computing power configuration and administration system (e.g. ACPI). This will
   help the student to understand how the workload exercises different parts of
-  the hardware, and why it does so.
+  the hardware, and why it does so. ({\em 30 minutes})
 \item {\bf Understanding how the workload spends energy}: software profiling,
   methodologies and tools for energy profiling (PowerMeter, {\sf pinpoint}, hardware meters). This will help the student identify
   bottlenecks from the point of view of performance as well as energy
-  consumption; also find out how this consumption scales with workload size.
+  consumption; also find out how this consumption scales with workload
+  size. ({\em 1 hour})
 \item {\bf Refactor for reduction of energy footprint}: once the bottlenecks
   have been identified and specific benchmarks developed to measure the energy
   footprint, the student needs to work across the board to reduce the footprint:
@@ -65,16 +82,63 @@ would, then, would be as follows:\begin{itemize}
   that reduces energy consumption (such as the compiler or interpreter) or
   configuring it, change
   in data structures used to store and process data or leveraging of
-  multi-threading or symmetric multiprocessing capabilities.
+  multi-threading or symmetric multiprocessing capabilities. ({\em 30 minutes})
 \end{itemize}
 
-Since most of these items require hands-on experience, we have decided to use
-active learning methodologies, organizing the students in groups and
-making them develop a project from scratch where they will first measure energy
-consumption and then minimize it. The grade can be tied to the
-reduction achieved. This way, putting the best practices in green computing
-to use, the students will be able to learn the skills and commit them to muscle
-memory so that they can be deployed in the future when needed.
+
+\section{Specific goal and objectives}
+
+The final objective would be to get the attendant to understand how choices of
+hardware and software platform from the ground up will affect the environmental
+impact of the workload that is going to be created or refactored and which best
+practices need to be involved to reduce that impact. Underneath, a practical
+understanding of the energy management in modern computer systems is also an
+objective.
+
+\section{Expected background of the audience}
+
+They need to have knowledge in software development, and at least some knowledge
+of the main parts of a computer and what is their function.
+
+\section{Biographical sketch}
+
+JJ Merelo obtained a degree in theoretical physics at the University of Granada,
+where he obtained a PhD in 1994 and is currently full professor at the
+department of Computer Engineering, Automatics and Robotics. Besides being a
+frequent open source contributor, he has been working as a senior software
+engineer. His GitHub profile is \url{https://github.com/JJ}. His Google Scholar
+profile https://scholar.google.com/citations?user=gFxqc64AAAAJ shows several
+hundred publications, and close to 10000 citations.
+
+For the last 3-4 years, he has been PI of grants related to energy optimization,
+mainly focused in evolutionary algorithms, and has published several papers on
+the subject \cite{DBLP:conf/icsoft/GuervosGC23}. He has also coordinated a
+summer school on green software development in summer 2024, within the framework
+of the summer schools of the University of Granada.
+
+He has got ample experience in coordinating summer schools, such as the two
+SigEVO summer schools that happened in Osaka and later in Prague. As a teacher,
+he has got 36 years experience, including tutorials and presentations in
+conferences such as GECCO, PPSN or CEC/WCCI.
+
+\section{Audiovisual equipment}
+
+Overhead projector.
+
+\section{Teaching material}
+
+\begin{itemize}
+  \item Teaching how to engineer greener software:
+    \url{https://digibug.ugr.es/handle/10481/90506}
+  \item Material for the summer course (in Spanish)
+    \url{https://jj.github.io/cemed-green-software/} including his own
+    presentation
+    \url{https://jj.github.io/cemed-green-software/preso/\%C3\%A1gil.html}
+\end{itemize}
+
+\section{Tutorial history}
+
+    This is the first time it has been proposed as a tutorial.
 
 \bibliographystyle{plain}
 \bibliography{energy.bib,dev.bib}
