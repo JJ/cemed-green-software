@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Green software - ingeniería </title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+                <link rel="stylesheet" href="dist/extra.css">
+		<link rel="stylesheet" href="dist/black-green.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+	    <div class="reveal">
+		<div class="slides">
+		    <section
+		        data-background="https://live.staticflickr.com/1822/42813527852_6583df0706_k_d.jpg"><h1>Desarrollo
+		        de software verde</h1>
+                        <h2><a href="https://cemed.ugr.es/curso/24al01/">Green Computing aplicado a la ingeniería del
+		            software</a></h2>
+                        <h3>Curso de verano, CEMED</h3>
+                        <h1>Ingeniería de la optimización energética</h1>
+                    </section>
+
+                    <!-- Introducción general -->
+                    <section>
+                        <section data-background="https://live.staticflickr.com/65535/51821342970_3278590473_k_d.jpg"><h1>Los perfiles energéticos se hacen para
+                            programas completos</h1>
+                            <h2 class="fragment">Hay que extraer las funciones
+                                que más CPU usan para medir el consumo</h2>
+                        </section>
+
+                        <section
+                    data-background="https://live.staticflickr.com/65535/51977547906_e99fc78d5c_k_d.jpg"><h1>Una
+                            metodología para medir consumo</h1>
+                            <h2 class="fragment">Ejecución con parámetros
+                                diferentes</h2>
+                            <h2 class="fragment">Un número fijo de llamadas</h2>
+                            <h2 class="fragment">Repetición para significación
+                                estadística</h2>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/65535/53224993643_172493ae86_k_d.jpg">
+                            <h2>Es imposible medir solamente nuestro
+                                programa</h2>
+                            <h1 class="fragment">Se establece una línea
+                                base</h1>
+
+                            <aside class="notes">Es decir, un programa que
+                        incluya las operaciones necesarias para generación de
+                        los datos, y con el que vamos a sustraer de una función
+                        determinada todo lo que el sistema completo, en media,
+                                puede incluir.</aside>
+                        </section>
+
+                        <section><h1>La estadística es importante</h1>
+                        </section>
+                    </section>
+
+                    <!-- Ejemplo: algoritmos evolutivos en C++ -->
+                    <section>
+		      
+                        <section><h1>Generación de cromosomas en C++</h1>
+                            <pre><code data-line-numbers="3,4|4,6,7,13,15|11,12">#include &lt;tr2/dynamic_bitset>
+#include &lt;random>
+std::vector&lt;std::tr2::dynamic_bitset&lt;>>&
+  generate_chromosomes(unsigned int number_of_elements, unsigned int length){
+  std::minstd_rand engine;
+  static std::vector&lt;std::tr2::dynamic_bitset&lt;>> population;
+  population.resize(number_of_elements);
+  for (unsigned i = 0; i &lt; number_of_elements; ++i)
+  {
+    std::tr2::dynamic_bitset&lt;> bits(length);
+    for (unsigned i = 0; i &lt; length; ++i)
+      bits[i] = engine() & 1;
+    population[i] = bits;
+  }
+  return population;
+}</code></pre>
+ <aside class='notes'>El primer highlight es para la parametrización
+ de la función; diferentes tamaños actuarán de forma diferente, y
+   habrá comportamientos no lineales cuando se salga de la caché, por
+                    ejemplo. La función está modularizada, para poder analizarla
+                    de forma independiente</aside>
+
+                        </section>
+
+                        <section><h1>Compilamos con </h1>
+			  <pre><code  data-line-numbers="1|2|3">g++-14
+			      -march=native
+			      -std=c++2a
+			      -Wall
+			      chromosomes.cc generate_chromosomes.cc -o chromosomes</code></pre>
+			</section>
+
+			<section><h1>Hay que medir las prestaciones</h1>
+			  <pre><code  data-line-numbers="3,11|9-12|8">#!/usr/bin/env sh
+FILENAME=$1
+for i in 512 1024 2048
+do
+    echo "Size ${i}"
+    OUTPUT="${FILENAME}-${i}.json"
+    echo "Saving to ${OUTPUT}"
+    pumas run -i 100 --json > $OUTPUT &
+    for j in $(seq 15)|
+    do
+        C++/chromosomes $i
+    done
+    kill $!
+done
+			  </code></pre>
+			</section>
+
+			<section><h1>Midiendo en un Mac</h1>
+			  <pre><code>cat test-512.json | jq ". | .metrics.consumption"</code></pre>
+			  <pre class='fragment'><code>{
+  "ane_w": 0,
+  "cpu_w": 4.5013532638549805,
+  "gpu_w": 0.02891661413013935,
+  "package_w": 4.530270099639893
+}</code></pre>
+
+			<aside class='notes'>En un M2 no hay muchas más alternativas. Otros programas como pinpoint o perf son mucho más fáciles de usar</aside>
+
+		    </section>
+
+		    <section><h1>Más fácil con <code>pinpoint</code></h1>
+			<pre><code>sub process_pinpoint_output {
+  my $output = shift;
+  if ($output !~ /0.00\s+J/) {
+      my ( $gpu, $pkg ) = $output =~ /(\d+\.\d+)\s+J/g;
+      my ( $seconds ) = $output =~ /(\d+\.\d+) seconds/;
+      return $gpu, $pkg,$seconds;
+    } else {
+      return 0,0,0;
+    }
+}	</code></pre>
+		    </section>
+
+		    <section><h1>Hay que instrumentar la medición de consumo</h1>
+		      <h2 class='fragment'>Y trabajar con estadísticas</h2>
+
+		      <aside class='notes'>Dado que hay una multitud de factores en los sistemas modernos que influyen en la energía, desde el propio programa hasta lo que se esté ejecutando y la temperatura ambiente, es necesario trabajar con medias</aside>
+		    </section>
+
+		    <section><h1>Esta operación común permite establecer la línea base</h1>
+		      <h2 class='fragment'>Pero nos interesa una función específica</h2>
+		    </section>
+
+		    <section><h1>Midiendo operaciones específicas</h1>
+		      <pre data-line-numbers="2,7|9-11"><code>import { hashify } from "https://deno.land/x/saco@v0.0.2/index.js";
+import { countOnes, generateChromosomes } from "../lib/utils.js";
+const size = Deno.args[0];
+const NUMBER_OF_CHROMOSOMES = 40000;
+console.log("Size ", size);
+const population = generateChromosomes(size, NUMBER_OF_CHROMOSOMES);
+const fitnessArray = [];
+population.forEach((c) => {
+  fitnessArray.push(countOnes(c));
+});
+		      </code></pre>
+		    </section>
+</section>
+
+                    <!-- 1. Cambios en la ejecución de los programas -->
+                    <section>
+                        <section><h1>Cualquier cambio en la implementación de un
+                            algoritmo cambiará su perfil energético</h1>
+                        </section>
+
+                        <section><h1>Ese efecto no tiene por qué ser
+                            intuitivo</h1>
+                            <h2 class="fragment">Cambiar CPU por memoria, por
+                                ejemplo</h2>
+
+                            <aside class="notes">Mejorar la eficiencia de un
+                        programa puede evidentemente mejorar el consumo
+                        energético, pero si aumenta el consumo de memoria, esta
+                        disminución puede no ser tanta como se espera y puede
+                                incluir aumentar el consumo energético</aside>
+                        </section>
+
+                        <section><h1>Conviene acompañar la intuición con la
+                            medición</h1>
+                        </section>
+
+                        <section><h1>Medida más simple: cambios en la
+                            compilación/intérprete</h1>
+                        </section>
+
+                        <section><h1>Compilación sin info
+                            depuración/optimización</h1>
+                            <h2 class="fragment">Menos uso de memoria, menos
+                                CPU</h2>
+                        </section>
+
+                        <section><h1>Cambio en el uso de instrucciones
+                            específicas de procesador</h1>
+
+			    <pre><code data-line-numbers="2">g++-14
+			      -march=native
+			      -std=c++2a
+			      -Wall
+			      chromosomes.cc generate_chromosomes.cc -o chromosomes</code></pre>
+                        </section>
+
+			<section><h1>Los compiladores permiten decidir qué instrucciones se incluyen en el ejecutable</h1>
+			  <h2 class='fragment'>Y opciones del compilador</h2>
+			  <pre><code data-line-numbers="1|3|4">g++-12
+			      -march=native
+			      -Ofast
+			      -std=c++17
+			      -Wall
+			      chromosomes.cc generate_chromosomes.cc -o chromosomes</code></pre>
+			</section>
+
+			<section><h1>Argumentos de JVM permiten cambiar el comportamiento energético</h1>
+			  <h2 class='fragment'><code>-server</code> para optimizar, <code>-X</code> para diferentes parámetros</h2>
+			</section>
+
+			<section><h1>Python permite engancharlo con <code>perf</code></h1>
+			  <pre><code>python -X perf programa.py</code></pre>
+			</section>
+
+			<section><h1>node.js no tiene muchas opciones</h1>
+			  <h2 class='fragment'><code>--jitless</code> impide asignación de memoria...</h2>
+
+			</section>
+
+			<section><h1>Mucho margen en compiladores, menos en intérpretes y JVM</h1>
+			</section>
+
+                    </section>
+
+                    <!-- 2. Cambios de sistema para ejecución y de SO. -->
+                    <section>
+		      <section><h1>Probar con diferentes máquinas, mismo SO</h1>
+			<h2 class='fragment'>Portátiles, más nuevos: mejor gestión</h2>
+		      </section>
+
+		      <section><h1>Cambiar Intel/Linux → Mac/Apple Silicon</h1>
+			<h2 class='fragment'>Las diferencias, sobre todo en M2/3, son dramáticas</h2>
+		      </section>
+                    </section>
+
+                    <!-- 3. Cambios en intérprete/compilador/herramientas base y dependencias. Cambios de lenguaje -->
+                    <section>
+		      <section><h1>Diferentes lenguajes → diferente perfil de consumo</h1>
+			<h4 class='fragment'>Interpretados, tipos "duck" → alto consumo</h4>
+			<h3 class='fragment'>JVM, ¿otros runtimes? → consumo medio</h3>
+			<h2 class='fragment'>Lenguajes compilados → bajo consumo</h2>
+			<h1 class='fragment'>Lenguajes funcionales compilados → bajísimo consumo</h1>
+		      </section>
+
+		      <section><h1>Experimentar con diferentes runtimes/compiladores</h1>
+			<h2 class='fragment'>Oracle JDK/OpenJDK/IntelliJ JDK</h2>
+			<h2 class='fragment'>CPython/PyPy</h2>
+			<h2 class='fragment'>node.js/deno/<code>bun</code></h2>
+		      </section>
+
+		      <section><h1>Trabajar con las últimas versiones estables</h1>
+			<h2 class='fragment'>En general, mejoran rendimiento y consumo</h2>
+		      </section>
+		      
+		      <section>
+			<h1><em>Siempre</em> diseñar experimentos <em>con las funciones en cuallo de botella</em></h1>
+		      </section>
+
+		      <section data-background='https://live.staticflickr.com/65535/50389447168_2c8efc75d7_k_d.jpg'><h1>No asumas nunca nada</h1>
+			<h2 class='fragment'>Diseña experimentos y perfila</h2>
+		      </section>
+		      
+                    </section>
+
+		</div>
+	    </div>
+
+	    <script src="dist/reveal.js"></script>
+	    <script src="plugin/notes/notes.js"></script>
+	    <script src="plugin/markdown/markdown.js"></script>
+	    <script src="plugin/highlight/highlight.js"></script>
+	    <script>
+	     Reveal.initialize({
+		 hash: true,
+                 width: "95%",
+		 height: '100%',
+		 controls: true,
+		 progress: true,
+		 backgroundTransition: 'convex',
+		 plugins: [ RevealHighlight, RevealNotes ]
+	     });
+	    </script>
+	</body>
+</html>
