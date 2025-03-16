@@ -211,10 +211,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal pre {
   display: block;
   position: relative;
-  width: 90%;
+  width: 95%;
   margin: var(--r-block-margin) auto;
   text-align: left;
-  font-size: 0.95em;
+  font-size: 0.85em;
   font-family: var(--r-code-font);
   line-height: 1.2em;
   word-wrap: break-word;
