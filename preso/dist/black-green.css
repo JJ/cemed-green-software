@@ -275,6 +275,11 @@ section.has-light-background, section.has-light-background h1, section.has-light
   border-bottom: none;
 }
 
+.reveal table th,
+.reveal table td {
+  font-size: 0.8em;
+}
+
 .reveal sup {
   vertical-align: super;
   font-size: smaller;
