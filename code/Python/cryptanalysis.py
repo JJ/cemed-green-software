@@ -8,11 +8,11 @@ def read_file(file_path):
         return file.read()
 
 def eliminate_whitespace_and_punctuation(text):
-    translator = str.maketrans('', '', string.whitespace + string.punctuation)
-    return text.translate(translator)
+    translator = str.maketrans('', '', string.whitespace + string.punctuation + '«»“”‘’')
+    return ''.join(filter(str.isalpha, text.translate(translator)))
 
 def calculate_frequency(text):
-    return Counter(text)
+    return Counter(text.lower())
 
 def print_frequency_markdown(frequency):
     print("| Symbol | Frequency |")
