@@ -83,6 +83,55 @@
                     </section>
 
                     <!-- We need to understand what's going on in the system -->
+                    <section>
+                        <section><h1>Greeks introduced ciphers that substituted
+                            one letter by another</h1>
+                            <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/21/Polybius_square.png"
+                    alt="Polybius square" class="fragment"
+                            <h2 class="fragment">Polybius square substituted a
+                                letter by a 2-number coordinate</h2>
+                        </section>
+
+                        <section><h1>Caesar's code is similar</h1>
+                            <h2 class="fragment">Provenzano, il <em>capo di
+                                tutti cappi</em>, used a variant of this for his
+                                messages</h2>
+                            
+
+                                <aside class="notes">About the <a
+                                                                   href="http://itre.cis.upenn.edu/myl/languagelog/archives/003049.html">Provenzano code</a></aside>
+                        </section>
+
+                        <section><h1>Can be easily attacked by cryptanalisis:
+                            symbol frequency</h1>
+
+                            <pre><code data-line-numbers="1-7|9-10">def eliminate_whitespace_and_punctuation(text):
+    translator = str.maketrans('', '', string.whitespace + string.punctuation + '«»“”‘’')
+    text = ''.join(filter(str.isalpha, text.translate(translator)))
+    return ''.join(
+        c for c in unicodedata.normalize('NFD', text)
+        if unicodedata.category(c) != 'Mn'
+    )
+
+def calculate_frequency(text):
+    return Counter(text.lower())</code></pre>
+
+                            <aside class="notes">Simple enough, using standard
+                                library functions like Counter and maketrans.
+                                We are using here a mainstream, high level,
+                                language.</aside>
+                            </aside>
+
+                        </section>
+
+                        <section><h1>Analyzing "I promessi spossi"</h1>
+                            <h2 class="fragment">0.22 seconds on my machine</h2>
+                        </section>
+
+                    </section>
+                
+
 
                     <!-- Measuring energy -->
                     <section>
