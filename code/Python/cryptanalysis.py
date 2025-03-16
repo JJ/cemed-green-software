@@ -23,7 +23,7 @@ def calculate_frequency(text):
 def print_frequency_markdown(frequency):
     print("| Symbol | Frequency |")
     print("|--------|-----------|")
-    for symbol, freq in frequency.items():
+    for symbol, freq in sorted(frequency.items(), key=lambda item: item[1]):
         print(f"|   {symbol}   |    {freq}    |")
 
 def main():
