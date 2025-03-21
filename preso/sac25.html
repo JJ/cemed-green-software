@@ -417,6 +417,26 @@ def calculate_frequency(text):
                             <em>RAPL</em></h1>
                             <h2 class="fragment">Prevalent in the Intel
                                 world (including AMD)</h2>
+
+                            <aside class="notes">It's basically the standard in
+                                x86 platforms</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/1638/25036393132_287b1e490d_o_d.jpg"><h1>Provides <em>registers</em> that estimate
+                            energy usage</h1>
+                            <h2 class="fragment"><code>PKG</code> or "package",
+                                includes all on-chip energy consumption</h2>
+                            <h2 class="fragment">Intel chipsets have more
+                                granularity: memory, core/PP0, uncore/PP1,
+                                "PSys"...</h2>
+
+                            <aside class="notes"><a
+                        href="https://hubblo-org.github.io/scaphandre-documentation/explanations/rapl-domains.html">This
+                              article</a> provides an explanation for the
+                                different parts. Nobody really knows what is
+                        PSys, really, except that it seems to be a bit above
+                        PKG. PKG is simply the total of core, uncore and RAM.
+                            </aside>
                         </section>
                     </section>
 
