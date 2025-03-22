@@ -32,7 +32,6 @@ def process_text_v0(file_path):
     cleaned_text = eliminate_whitespace_and_punctuation(text)
     return calculate_frequency(cleaned_text)
 
-
 def process_text_v1(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         frequency = Counter(chain.from_iterable(line.lower() for line in file))
