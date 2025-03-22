@@ -16,10 +16,6 @@ jobs:
             python-version: '3.x'
         - name: Install the latest version of uv
           uses: astral-sh/setup-uv@v5
-        - name: Install dependencies
-          working-directory: code/Python
-          run: uv sync
-
-        - name: Run tests
-          working-directory: code/Python
-          run: uv run pytest
+        - name: Install dependencies and test
+          working-directory: ./code/Python
+          run: uv sync && uv run pytest -v
