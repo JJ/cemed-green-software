@@ -2,11 +2,6 @@ import sys
 from pyJoules.energy_meter import measure_energy
 from sacrypt import process_text_v0,process_text_v1
 
-def process_text_v1():
-    # Dummy implementation of process_text_v1
-    print("Running process_text_v1")
-    # Add your actual processing code here
-
 @measure_energy
 def run_process(process_func, file_path):
     process_func(file_path)
