@@ -2,6 +2,12 @@ version = 1
 revision = 1
 requires-python = ">=3.13"
 
+[manifest]
+members = [
+    "sacrypt",
+    "temp",
+]
+
 [[package]]
 name = "colorama"
 version = "0.4.6"
@@ -67,3 +73,8 @@ dev = [
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest", specifier = ">=8.3.5" }]
+
+[[package]]
+name = "temp"
+version = "0.1.0"
+source = { editable = "temp" }
