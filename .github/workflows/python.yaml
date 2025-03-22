@@ -18,4 +18,4 @@ jobs:
           uses: astral-sh/setup-uv@v5
         - name: Install dependencies and test
           working-directory: ./code/Python
-          run: uv sync -v && uv run pytest -v
+          run: uv sync && uv run pytest -v
