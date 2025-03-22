@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Cryptanalysis examples for SAC"
 readme = "README.md"
 requires-python = ">=3.13"
+dependencies = [
+    "pyjoules>=0.5.1",
+]
 
 [dependency-groups]
 dev = ["pytest>=8.3.5"]

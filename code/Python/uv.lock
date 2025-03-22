@@ -2,12 +2,6 @@ version = 1
 revision = 1
 requires-python = ">=3.13"
 
-[manifest]
-members = [
-    "sacrypt",
-    "temp",
-]
-
 [[package]]
 name = "colorama"
 version = "0.4.6"
@@ -45,6 +39,15 @@ wheels = [
 ]
 
 [[package]]
+name = "pyjoules"
+version = "0.5.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/c1/35/30e4cad88f1a3a53bb756ac67a0fd5694eb4e799d854a0fb95b4c20d4eef/pyJoules-0.5.1.tar.gz", hash = "sha256:9aae7594593cf26bdcac0e597c21fd326ce937bd2e93767bd6279c6bad0c8dc8", size = 26088 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/df/5c/60c8184712bb088d3f6332a399ab2c8a5e6a4b4250a41f65853497ea96fc/pyJoules-0.5.1-py2.py3-none-any.whl", hash = "sha256:558505e13b7e24ff2aceb5eab6e497f7cee101ed2605343238f25ff4750909cb", size = 57295 },
+]
+
+[[package]]
 name = "pytest"
 version = "8.3.5"
 source = { registry = "https://pypi.org/simple" }
@@ -63,6 +66,9 @@ wheels = [
 name = "sacrypt"
 version = "0.1.0"
 source = { editable = "." }
+dependencies = [
+    { name = "pyjoules" },
+]
 
 [package.dev-dependencies]
 dev = [
@@ -70,11 +76,7 @@ dev = [
 ]
 
 [package.metadata]
+requires-dist = [{ name = "pyjoules", specifier = ">=0.5.1" }]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest", specifier = ">=8.3.5" }]
-
-[[package]]
-name = "temp"
-version = "0.1.0"
-source = { editable = "temp" }
