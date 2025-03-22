@@ -7,3 +7,6 @@ requires-python = ">=3.13"
 
 [dependency-groups]
 dev = ["pytest>=8.3.5"]
+
+[project.scripts]
+analysis = "sacrypt.__main__:main"
