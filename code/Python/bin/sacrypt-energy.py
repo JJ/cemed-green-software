@@ -7,6 +7,9 @@ def run_process(process_func, file_path):
     process_func(file_path)
 
 if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python sacrypt-energy.py <file_path> [version]")
+        sys.exit(1)
     file_path = sys.argv[1]
     version = sys.argv[2] if len(sys.argv) > 2 else "v0"
 
