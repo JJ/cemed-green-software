@@ -16,4 +16,3 @@ with EnergyContext( start_tag="read_file") as ctx:
     cleaned_text = eliminate_whitespace_and_punctuation(text)
     frequencies = calculate_frequency(cleaned_text)
 
-
