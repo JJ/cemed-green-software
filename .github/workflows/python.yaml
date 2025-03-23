@@ -1,0 +1,21 @@
+name: Test Python Code
+
+on: [push, pull_request]
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.x'
+        - name: Install the latest version of uv
+          uses: astral-sh/setup-uv@v5
+        - name: Install dependencies and test
+          working-directory: ./code/Python
+          run: uv sync && uv run pytest -v

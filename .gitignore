@@ -167,6 +167,8 @@ onemax
 bitflip
 chromosomes
 xover
+cryptanalisis
+cryptanalysis
 
 # vscode
 .vscode/
@@ -175,3 +177,12 @@ xover
 *.dSYM/
 .DS_Store
 
+# latex
+auto/
+*.aux
+*.bbl
+*.blg
+*.out
+*.pdf
+.Rproj.user
+*.Rproj
