@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+# Pumas is the power usage monitor for Apple Silicon
 
 FILENAME=$1
 
