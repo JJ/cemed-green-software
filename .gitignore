@@ -186,3 +186,5 @@ auto/
 *.pdf
 .Rproj.user
 *.Rproj
+.RData
+.Rhistory
