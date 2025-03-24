@@ -593,15 +593,30 @@ What we see here is that there's pretty much a linear increase between the size
                             <table><tr><th>Command</th><th>Platforms</th><th>Attaches
                                 to command</th></tr>
 
-                                <tr class="fragment fade-in" data-fragment-index="3"><td><code>pinpoint</code></td><td>RAPL,
+                                <tr class="fragment fade-in"
+                                    data-fragment-index="3"><td><span class="fragment highlight-blue" data-fragment-index="4"> <code>pinpoint</code></span></td><td>RAPL,
                                     IOReport for M1, others</td><td>Yes</td>
                                 </tr>
 
                                 <tr class="fragment fade-in" data-fragment-index="2"><td><code>perf</code></td><td>Linux</td><td>No</td></tr>
-                                <tr class="fragment fade-in" data-fragment-index="1"><td><code>pumas</code></td><td>Mac</td><td>No</td></tr>
+                                <tr class="fragment fade-in"
+                                    data-fragment-index="1"><td><code>pumas</code></td><td>Mac</td><td>No</td></tr>
+
                             </table>
-                                    
- 
+
+                            <aside class="notes">Those are the two things
+                                that you need: there should be an uniform way of
+                                measuring consumption in different environments, and
+                                you should be able to run the command that contains
+                                your workload, what you're insterested in. If it's
+                                not run with your command, but in the background
+                                (and can be started or killed, or simply kinda find
+                                what was happenning when your command was running)
+                                you need a certain amount of instrumentation to get
+                                it going.So pinpoint it is</aside>
+
+                        </section>
+                            
                     </section>
 
                     <!-- Ejemplo: algoritmos evolutivos en C++ -->
