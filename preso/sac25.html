@@ -491,9 +491,13 @@ if __name__ == "__main__":
                                 enough pretty much out of the box</aside>
                         </section>
 
-                        <section><h1><code>sudo</code> make a sandwich</h1>
+                        <section><h1><code>sudo</code> make me a sandwich</h1>
                             <pre><code data-line-numbers="1|1-2">$ sudo ./.venv/bin/python bin/sacrypt-energy.py ../data/3romanzi.txt v1
 begin timestamp : 1742670844.3934789; tag : run_process; duration : 0.08716917037963867; package_0 : 3239548.0; core_0 : 55554.0; nvidia_gpu_0 : 1150</code></pre>
+                            <aside class="notes">Since energy profiles can
+                            reveal a lot about specific things that are being
+                            done in the system, it's been converted into a
+                                privileged API, which needs <code>sudo</code> to run.</aside>
                         </section>
 
                     </section>
