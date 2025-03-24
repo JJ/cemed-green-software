@@ -9,3 +9,5 @@ amd_desktop_base$mb_per_J <- amd_desktop_base$size/ (1024*1024 * amd_desktop_bas
 
 ggplot(amd_desktop_base, aes(x=File,y=mb_per_J))+geom_boxplot(notch=T)+labs(title="Desktop AMD Baseline",x="File",y="MB per Joule")
 ggsave("../../img/mb-per-joule-amd-libri.png",width=9, height=5)
+
+amd_desktop_base$delta_PKG <- amd_desktop_base$PKG - 21.3536*amd_desktop_base$seconds
