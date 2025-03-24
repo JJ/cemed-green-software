@@ -635,9 +635,27 @@ Energy counter stats for 'sleep 1':
                             energy expenses">
                             <aside class="notes">With this, we know how many
                                 joules per second the system spends: we can
-                                subtract them from our measurements</aside>
+                                subtract them from our measurements. We use a
+                            linear model to establish the slope, which will be
+                            the joules spent per second</aside>
+                    </section>
+
+                    <section><img src="../img/boxplot-delta-pkg-amd-libri.png"
+                                  alt="real energy spent">
+
+                        <aside class="notes">What we are doing here is
+                    multiplying the amount of J the system spends in the actual
+                    time this is running, and subtracting it from the measured
+                    amount. This would be the result. We can see with a bit more
+                    precision how much energy is actually spent in every one of
+                            the three files, and how it's distributed. The
+                    bigger, the bigger possibility there's an outlier, but we
+                    can also see that it's not a normal distribution, so we can
+                    only use statistics to establish some measurement. </aside>
                     </section>
                     </section>
+
+                    <!-- Now we know how to measure: let's improve everything! -->
 
                     <!-- Ejemplo: algoritmos evolutivos en C++ -->
                     <section>
