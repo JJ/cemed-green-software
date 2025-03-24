@@ -527,7 +527,23 @@ begin timestamp : 1742670844.3934789; tag : run_process; duration : 0.0871691703
                         </section>
 
                         <section><h1>Statistics are important</h1>
-                            
+                            <img src="../img/time-vs-pkg-amd-libri.png"
+                                 alt="Computing time and PKG for 3 books">
+
+                            <aside class="notes">We need a script (written in
+                        this case in Perl) which captures the output of
+                        pyJoules, processes it, and puts in in a format; then we
+                        use R to plot the result. We are plotting the PKG here,
+                        that is, what is consumed by the system-on-chip, which
+                                is normally the most important part of energy
+                        consumption. What we see is that, for every file, there
+                        is roughly a proportion between time and energy spent;
+                        however, this proportion is different for every one,
+                        indicating that the way energy is tapped is
+                        different. Also, there's a certain, mostly horizontal,
+                        spread (that is, you can consume a range of energy even
+                        spending the same time). Spread can be 1-2 joules in
+                        some cases, around 10% of the total measure.</aside>
                         </section>
 
                         <section data-background="https://live.staticflickr.com/65535/53224993643_172493ae86_k_d.jpg">
