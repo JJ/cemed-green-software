@@ -574,13 +574,13 @@ What we see here is that there's pretty much a linear increase between the size
                             <h1 class="fragment">A baseline that eliminates
                                 system overhead is needed</h1>
                             <h2 class="fragment">We can't do that <em>from the
-                                program itself</em>
+                                program itself</em></h2>
 
                         </section>
 
                     </section>
                     
-                    <!-- Measuring energy -->
+                    <!-- Measuring energy and the baseline -->
                     <section>
                         <section
                     data-background="https://live.staticflickr.com/65535/51821342970_3278590473_k_d.jpg"><h1>We
@@ -616,7 +616,26 @@ What we see here is that there's pretty much a linear increase between the size
                                 it going.So pinpoint it is</aside>
 
                         </section>
-                            
+
+                        <section><h1>Let's profile... nothing!</h1>
+                            <pre><code>$ sudo pinpoint sleep 1
+Energy counter stats for 'sleep 1':
+[interval: 50ms, before: 0ms, after: 0ms, delay: 0ms, runs: 1]
+
+	10.64 J nvml:nvidia_geforce_rtx_4070_super_0
+	22.17 J rapl:pkg                            
+
+	1.00109098 seconds time elapsed </pre></code>
+                        <aside class="notes">We need to repeat this a number of
+                            times until we get a good measurement</aside>
+                    </section>
+                    
+                    <section>
+                            <img src="time-vs-pkg-sleep.png" alt="base expenses">
+                            <aside class="notes">With this, we know how many
+                                joules per second the system spends: we can
+                                subtract them from our measurements</aside>
+                    </section>
                     </section>
 
                     <!-- Ejemplo: algoritmos evolutivos en C++ -->
