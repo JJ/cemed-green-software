@@ -16,3 +16,11 @@ ggplot(amd_desktop_base, aes(x=delta_PKG,y=seconds,shape=File))+geom_point()+geo
 ggplot(amd_desktop_base, aes(y=delta_PKG,x=File))+geom_violin()+labs(title="Energy per file",x="File",y="PKG -Joules")
 
 ggsave("../../img/boxplot-delta-pkg-amd-libri.png",width=9, height=5)
+
+intel_laptop_base <- read.csv("../data/plugged-intel-23-Mar-12-49-37.csv")
+intel_laptop_base$mb_per_J <- intel_laptop_base$size/ (1024*1024 * intel_laptop_base$PKG )
+intel_laptop_base$delta_PKG <- 0
+amd_vs_intel <- rbind(amd_desktop_base, intel_laptop_base)
+
+ggplot(amd_vs_intel, aes(x=seconds,y=PKG,color=Platform,shape=File))+geom_point()+labs(title="AMD vs Intel",x="Seconds",y="PKG (Joules)")
+ggsave("../../img/amd-vs-intel-libri.png",width=9, height=5)
