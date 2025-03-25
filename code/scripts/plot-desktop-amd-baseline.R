@@ -24,3 +24,7 @@ amd_vs_intel <- rbind(amd_desktop_base, intel_laptop_base)
 
 ggplot(amd_vs_intel, aes(x=seconds,y=PKG,color=Platform,shape=File))+geom_point()+labs(title="AMD vs Intel",x="Seconds",y="PKG (Joules)")
 ggsave("../../img/amd-vs-intel-libri.png",width=9, height=5)
+
+amd_vs_intel$EDP <- amd_vs_intel$PKG * amd_vs_intel$seconds
+ggplot(amd_vs_intel, aes(x=File,y=EDP,color=Platform))+geom_boxplot()+labs(title="Energy Delay Product",x="File",y="EDP")
+ggsave("../../img/edp-amd-vs-intel-libri.png",width=9, height=5)
