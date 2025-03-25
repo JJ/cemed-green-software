@@ -167,6 +167,8 @@ onemax
 bitflip
 chromosomes
 xover
+cryptanalisis
+cryptanalysis
 
 # vscode
 .vscode/
@@ -183,3 +185,7 @@ auto/
 *.out
 *.pdf
 .Rproj.user
+*.Rproj
+.RData
+.Rhistory
+
