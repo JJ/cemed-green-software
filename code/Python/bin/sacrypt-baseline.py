@@ -1,4 +1,5 @@
 import sys
+from pyJoules.energy_meter import EnergyContext
 from sacrypt import eliminate_whitespace_and_punctuation, calculate_frequency, print_frequency_markdown
 
 if __name__ == "__main__":
