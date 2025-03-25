@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 
 import sys
-from sacrypt import process_text_v0,process_text_v1
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+from sacrypt import process_text_v0, process_text_v1
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
