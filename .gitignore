@@ -184,6 +184,9 @@ auto/
 *.blg
 *.out
 *.pdf
+*.synctex.gz
+
+# R and rstudio
 .Rproj.user
 *.Rproj
 .RData
