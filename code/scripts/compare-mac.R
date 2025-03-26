@@ -24,3 +24,4 @@ watts_mac_amd <- rbind(watts_mac_amd,
                        data.frame(watts_per_100_msec=romanzi_mac$cpu_w, Platform="Mac", File="3romanzi"))
 
 ggplot(watts_mac_amd, aes(x=File,y=watts_per_100_msec,color=Platform))+geom_boxplot()+labs(title="AMD vs Mac",x="File",y="Watts per 100 msec")
+ggsave("../../img/watts-amd-vs-mac.png",width=9, height=5)
