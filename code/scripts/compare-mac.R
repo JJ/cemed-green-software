@@ -8,6 +8,7 @@ amd_desktop_base$avg_watts_per_100_msec <- amd_desktop_base$PKG / (amd_desktop_b
 amd_desktop_base$File <- gsub("^\\s+|\\s+$", "", amd_desktop_base$File)
 
 manzoni_mac <- fromJSON("../data/sacrypt-manzoni-watts.json")
+manzoni_seconds <- 10 * length(manzoni_mac$cpu_w)
 malavoglia_mac <- fromJSON("../data/sacrypt-malavoglia-watts.json")
 romanzi_mac <- fromJSON("../data/sacrypt-3romanzi-watts.json")
 
