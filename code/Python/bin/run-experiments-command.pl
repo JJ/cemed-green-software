@@ -35,7 +35,7 @@ for my $f ( qw( manzoni_i_promessi_sposi_1840 malavoglia 3romanzi ) ) {
   do {
     my $command = "$node $script $data_dir/$f.txt";
     say $command;
-    my $output = `pinpoint $command 2>&1`;
+    my $output = `pinpoint -i 10 $command 2>&1`;
     say $output;
     my ( $gpu, $pkg, $seconds ) = process_pinpoint_output $output;
     if ($gpu != 0 ) {
