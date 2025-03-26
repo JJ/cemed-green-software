@@ -29,17 +29,20 @@ my $suffix = "$day-$mon-$hh-$mm-$ss";
 open my $fh, ">", "$data_dir/$preffix-$suffix.csv";
 
 say $fh "Platform,File,PKG,seconds";
-
 for my $f ( qw( manzoni_i_promessi_sposi_1840 malavoglia 3romanzi ) ) {
   my @results;
-  for ( my $i = 0; $i < $ITERATIONS; $i++ ) {
+  my $successful = 0;
+  do {
     my $command = "$node $script $data_dir/$f.txt";
     say $command;
     my $output = `pinpoint $command 2>&1`;
     say $output;
     my ( $gpu, $pkg, $seconds ) = process_pinpoint_output $output;
-    say "$pkg $seconds";
-    say $fh "$platform; $f; ",$pkg,"; $seconds";
-  }
+    if ($gpu != 0 ) {
+        $successful++;
+        say "$pkg $seconds";
+        say $fh "$platform; $f; ",$pkg,"; $seconds";
+    }
+  } while ( $successful < $ITERATIONS );
 }
 close $fh;
