@@ -855,40 +855,30 @@ Energy counter stats for 'sleep 1':
                         </section>
                     </section>
 
-                    <!-- 1. Cambios en la ejecución de los programas -->
+                    <!-- Changes in how you run the program -->
                     <section>
-                        <section><h1>Cualquier cambio en la implementación de un
-                            algoritmo cambiará su perfil energético</h1>
+                        <section><h1>You can change how you run/compile a
+                            program</h1>
+                            <h2 class="fragment">Non-zero impact with no change
+                                in code</h2>
+                            <h2 class="fragment">Result can be counter-intuitive</h2>
+
+                            <h3 class="fragment">Always measure and compare</h3>
+                            <aside class="notes">No change is going to be "make
+                        this consume less", it's always tweaks in code
+                        generation or in other ways of running it. So you need
+                        to always measure</aside>
                         </section>
 
-                        <section><h1>Ese efecto no tiene por qué ser
-                            intuitivo</h1>
-                            <h2 class="fragment">Cambiar CPU por memoria, por
-                                ejemplo</h2>
-
-                            <aside class="notes">Mejorar la eficiencia de un
-                        programa puede evidentemente mejorar el consumo
-                        energético, pero si aumenta el consumo de memoria, esta
-                        disminución puede no ser tanta como se espera y puede
-                                incluir aumentar el consumo energético</aside>
-                        </section>
-
-                        <section><h1>Conviene acompañar la intuición con la
-                            medición</h1>
-                        </section>
-
-                        <section><h1>Medida más simple: cambios en la
-                            compilación/intérprete</h1>
-                        </section>
-
-                        <section><h1>Compilación sin info
-                            depuración/optimización</h1>
-                            <h2 class="fragment">Menos uso de memoria, menos
+                        <section><h1>Eliminate debugging/profiling information
+                            when compiling</h1>
+                            <h2 class="fragment">Less use of memory, less
                                 CPU</h2>
+                            <h2 class="fragment">This should be obvious, but
+                                scientific computing is rarely following best practices</h2>
                         </section>
 
-                        <section><h1>Cambio en el uso de instrucciones
-                            específicas de procesador</h1>
+                        <section><h1>Use processor-specific machine instructions</h1>
 
 			    <pre><code data-line-numbers="2">g++-14
 			      -march=native
@@ -897,9 +887,8 @@ Energy counter stats for 'sleep 1':
 			      chromosomes.cc generate_chromosomes.cc -o chromosomes</code></pre>
                         </section>
 
-			<section><h1>Los compiladores permiten decidir qué instrucciones se incluyen en el ejecutable</h1>
-			  <h2 class='fragment'>Y opciones del compilador</h2>
-			  <pre><code data-line-numbers="1|3|4">g++-12
+			<section><h1>Use specific compiler/language standard versions</h1>
+			  <pre><code data-line-numbers="1|3|4">g++-14
 			      -march=native
 			      -Ofast
 			      -std=c++17
@@ -907,20 +896,17 @@ Energy counter stats for 'sleep 1':
 			      chromosomes.cc generate_chromosomes.cc -o chromosomes</code></pre>
 			</section>
 
-			<section><h1>Argumentos de JVM permiten cambiar el comportamiento energético</h1>
-			  <h2 class='fragment'><code>-server</code> para optimizar, <code>-X</code> para diferentes parámetros</h2>
-			</section>
-
-			<section><h1>Python permite engancharlo con <code>perf</code></h1>
-			  <pre><code>python -X perf programa.py</code></pre>
-			</section>
-
-			<section><h1>node.js no tiene muchas opciones</h1>
-			  <h2 class='fragment'><code>--jitless</code> impide asignación de memoria...</h2>
-
-			</section>
-
-			<section><h1>Mucho margen en compiladores, menos en intérpretes y JVM</h1>
+			<section><h1>Other VMs/compilers/interpreters have
+			    runtime option</h1>
+			  <h2 class='fragment'>They are specific, need to check
+			      those that allow options mentioned above</h2>
+                          <h2 class="fragment">Always check versions for power
+			      consumption</h2>
+                          <aside class="notes">In <a
+			    href="https://medium.com/growing-green-software/comparing-java-virtual-machine-energy-efficiency-e2e8658539b8">this
+			    article, for instance, they see that version 21 and
+			    22 consume more or less the same, but version 17
+			      consumes almost 30% more</a>
 			</section>
 
                     </section>
