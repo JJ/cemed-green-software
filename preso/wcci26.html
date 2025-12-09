@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Engineering greener software </title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+        <link rel="stylesheet" href="dist/extra.css">
+	<link rel="stylesheet" href="dist/black-green.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+    </head>
+    <body>
+	<div class="reveal">
+	    <div class="slides">
+		<section
+		        data-background="https://live.staticflickr.com/1822/42813527852_6583df0706_k_d.jpg"><h1>Engineering
+		greener (soft computing) software</h1>
+                    <h2>WCCI'26, Maastricht</h2>
+		    <h3>JJ Merelo, university of Granada, Spain, <code>jmerelo@ugr.es</code></h3>
+                </section>
+
+                <section data-background="https://live.staticflickr.com/8189/8132129368_5d919ba652_k_d.jpg"><h1>Or,
+                    how the history of Sicily can help us save energy in our
+                    applications</h1>
+                </section>
+
+                <!-- Pre-pre-intro -->
+		<section data-background="https://live.staticflickr.com/790/40335650685_e69ee24b89_k_d.jpg"><h2>Gorgias, greek philosopher from Leontini</h2>
+		      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Gorgia_da_Lentini.png" alt="Busto de Gorgias, Wikipedia">
+		      <blockquote>Nothing exists; even if something exists, nothing can be known about it; and even if something can be known about it, knowledge about it can't be communicated to others.</blockquote>
+		      <h2 class="fragment">One's got to try...</h2>
+                      <aside class="notes">The coast and part of the interior of
+		    Sicily included many cities funded by the greek as far as
+		          the 8th century BC. Leontini, called
+		    <em>Leontinoi</em>, was one such city created by the
+		    Ionians, as was Catania; Syracuse was, however, created by
+		    the Dorians. They were rich, thriving cities that rivaled
+		    the known Greek cities of Athens... Or Sparta. As such, they
+		    attracted talent, including Gorgias, the first sophist, a
+		    very interesting philosopher that, with this sentence, kills
+		    artificial intelligence. On the other hand, it shows the
+		    improtance of language to communicate knowledge, which is
+		    what I will try to do here.
+                      </aside>
+		</section>
+
+                <section>
+                  <section
+                            data-background="https://upload.wikimedia.org/wikipedia/commons/7/76/Antikythera_model_front_panel_Mogi_Vicentini_2007.JPG"><h1>Computers
+                            need power to operate</h1>
+
+                    <aside class="notes">This is the <a
+                    href="https://en.wikipedia.org/wiki/Antikythera_mechanism">Antikythera</a>
+                    mechanism, which was a solar system position calculator,
+                    with possible or even probable origin in Syracuse, designed
+                    in part by Archimedes. It was hand-cranked to reveal the
+                    position of the planets and the moon some time from now, and
+                  it used almost 40 gears, which you had to move using the wheel, consuming
+                                obviously power. From the first, analogue,
+                                computers, 2300 years ago, computers need
+                                power.</aside>
+                  </section>
+
+                  <section><h1>Boy, do they need power...</h1>
+                    <img src="../img/deepseek-hype.png" alt="headlines
+                                      deepseek">
+                    <aside class="notes">They need so much energy that
+                                just the fact that there was a new training system
+                                used in Deepseek sent NVidia shares tumbling
+                                down. See <a
+                            href="https://www.axios.com/2025/01/28/deepseek-ai-model-energy-power-demand">this
+                                news article in Axios.</a>
+                    </aside>
+                  </section>
+
+                        <section><h1>But also...</h1>
+                            <img src="../img/future-se.png" alt="Do we have a
+                                      future?">
+
+                            <aside class="notes">The (near) future is not in
+                        writing code. It's in arranging the engineering of the
+                                code so that it meets certain standards</aside>
+                        </section>
+
+                    </section>
+
+                    <!-- Preintroduction -->
+
+                    <section>
+                        <section><h1>Moore's law is dead</h1>
+                            <img src="../img/moores-law.png" alt="Moore's law
+                                      and its trends">
+                            <aside class="notes">Clock speed is not improving
+                        any more,
+                        many architectural improvements made performance
+                        increase in the last few years, but we are already in
+                        the diminishing returns territory: lots of architecturar
+                        improvements are needed to extract a tiny bit of
+                                performance improvement. Besides, Moore's said
+                                that power consumption <em>and</em> speed could
+                        be improved simultaneously. That's no longer true.</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/1881/43540424545_65128b994e_3k_d.jpg"><h1>You can't make applications run much faster</h1>
+                            <h2 class="fragment">Make them greener</h2>
+
+                            <aside class="notes">You can actually make them
+                                faster, but they will consume more energy.</aside>
+                        </section>
+                    </section>
+
+                    <!-- Organization -->
+                    <section data-background="https://live.staticflickr.com/65535/52547418475_4ba8cd07e7_k_d.jpg"><h1>Tutorial organization</h1>
+                        <h2 class="fragment"><em>Antipasti</em>: Energy/power and all that</h2>
+                        <h2 class="fragment"><em>Primo piatto</em>: How and where power is spent</h2>
+                        <h2 class="fragment"><em>Secondo piatto</em>:Measuring energy expenses</h2>
+                        <h2 class="fragment"><em>Dolci</em>: Making programs greener</h2>
+                    </section>
+
+                    <section>
+                        <section data-background="https://upload.wikimedia.org/wikipedia/commons/9/9e/Maquina_vapor_Watt_ETSIIM.jpg"><h1>System operations draw <em>power</em></h1>
+                            <h2 class="fragment">Measured in <em>watts</em></h2>
+                            <aside class="notes">This is the antipasto, just a
+                        bit of physical terminology so that everyone of us
+                                understands what we're talking about</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/101/298130050_360ac32456_o_d.jpg"><h1>... And they consume
+                            <em>energy</em></h1>
+                            <h2>Measured in
+                                <em>joules</em></h2>
+
+                            <h3>Energy = power x time</h3>
+                            <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Sandorf_Grating.jpg"
+                            alt="Cipher grating used in Matthias Sandorf book by
+                            Jules Verne">
+                            <aside class="notes">It's the only book that
+                                mentions Sicily... not the only one to mention
+                                cipher. 1 kWh = 3.6 10⁶ J. This is what you pay
+                            for in your electricity bill... And what we're
+                            interested in minimizing.
+                            </aside>
+                        </section>
+                    </section>
+
+                    <!-- We need to understand what's going on in the system -->
+                    <section>
+                        <section><h1>Letter substitution cipher introduced by Greeks</h1>
+                            <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/21/Polybius_square.png"
+                    alt="Polybius square" class="fragment" style="width:400px">
+                            <h2 class="fragment">Polybius square letter →
+                                2-number coordinate</h2>
+
+                            <aside class="notes">We need to think about a single
+                        problem when measuring energy. So let's check out this
+                                problem, which is relevant to the current
+                        space... ish. Sicily was greek for a long time,
+                        actually, and it was one of the first places to trade,
+                                and then host spin offs of different Greek
+                                <em>poleis</em>.
+                                This would be kind of a contorni, introducing a
+                        problem we will be dealing with, and tweaking, for the
+                                rest of the tutorial</aside>
+                            </aside>
+                        </section>
+
+                        <section><h1>Caesar's code is similar</h1>
+                            <h2 class="fragment">Provenzano, il <em>capo di
+                                tutti capi</em>, used a variant of this for his
+                                messages</h2>
+<h1 class='fragment'>Can be broken by cryptanalisis</h1>
+                                <aside class="notes">About the <a href="http://itre.cis.upenn.edu/myl/languagelog/archives/003049.html">Provenzano code</a></aside>
+                        </section>
+
+                        <section><h1>Cryptanalisis introduced by Al-Kindi, 9th
+                            century</h1>
+                            <h2 class="fragment">Also reintroduced Greek philosophy
+                                to the Muslim world</h2>
+                            <h2 class="fragment">Muslim Sicily: a hub for Muslim
+                                philosophy</h2>
+                            <h3 class="fragment">Did Sicily open cryptanalysis
+                                to the world?</h3>
+                        </section>
+
+                        <section><h1>Symbol frequency in Python</h1>
+
+                            <pre><code data-line-numbers="1-10|12-13">def eliminate_whitespace_and_punctuation(text):
+    translator = str.maketrans(
+                   '', '',
+                     string.whitespace + string.punctuation + '«»“”‘’'
+                 )
+    text = ''.join(filter(str.isalpha, text.translate(translator)))
+    return ''.join(
+        c for c in unicodedata.normalize('NFD', text)
+        if unicodedata.category(c) != 'Mn'
+    )
+
+def calculate_frequency(text):
+    return Counter(text.lower())</code></pre>
+
+                            <aside class="notes">Simple enough, using standard
+                                library functions like Counter and maketrans.
+                                We are using here a mainstream, high level,
+                                language. Cryptanalisis is about analyzing symbol frequency in a corpus, and comparing it to a known table of frequencies. Easy enough, if you know what's the language, or even if you don't. Let's try to work that out.</aside>
+                            </aside>
+
+                        </section>
+
+                        <section><h3>Analyzing "I promessi spossi"</h3>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Frequency</th>
+<th>Symbol</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>æ</td>
+<td>1</td>
+<td>p</td>
+<td>30449</td>
+</tr>
+<tr>
+<td>k</td>
+<td>3</td>
+<td>u</td>
+<td>36561</td>
+</tr>
+<tr>
+<td>y</td>
+<td>8</td>
+<td>d</td>
+<td>38203</td>
+</tr>
+<tr>
+<td>w</td>
+<td>16</td>
+<td>c</td>
+<td>48117</td>
+</tr>
+<tr>
+<td>j</td>
+<td>22</td>
+<td>s</td>
+<td>56020</td>
+</tr>
+<tr>
+<td>x</td>
+<td>139</td>
+<td>l</td>
+<td>57179</td>
+</tr>
+<tr>
+<td>z</td>
+<td>7803</td>
+<td>t</td>
+<td>62603</td>
+</tr>
+<tr>
+<td>q</td>
+<td>7997</td>
+<td>r</td>
+<td>67736</td>
+</tr>
+<tr>
+<td>b</td>
+<td>10036</td>
+<td>n</td>
+<td>74764</td>
+</tr>
+<tr>
+<td>f</td>
+<td>10811</td>
+<td>i</td>
+<td>98025</td>
+</tr>
+<tr>
+<td>h</td>
+<td>13831</td>
+<td>o</td>
+<td>99056</td>
+</tr>
+<tr>
+<td>g</td>
+<td>17556</td>
+<td>a</td>
+<td>118096</td>
+</tr>
+<tr>
+<td>v</td>
+<td>23585</td>
+<td>e</td>
+<td>123592</td>
+</tr>
+<tr>
+<td>m</td>
+<td>24233</td>
+
+</tr>
+
+</tbody>
+</table>
+<aside class="notes">Takes 1/5th of a second...</aside>
+                        </section>
+
+                        <section
+                            data-background="https://live.staticflickr.com/65535/53869830403_c540595ed3_k_d.jpg">
+                            <h1>Do we know how much energy does it consume?</h1>
+
+                            <aside class="notes">So we get to the primo piatto,
+                                how and where power is spent</aside></section>
+                        </section>
+                    </section>
+
+                    <!-- Structuring measuring energy -->
+                    <section>
+                        <section data-background="https://live.staticflickr.com/65535/53039395724_6670711912_k_d.jpg"><h1>We need to understand</h1>
+                            <h2 class="fragment">What are we measuring</h2>
+                            <h2 class="fragment">How can we measure it</h2>
+                            <h2 class="fragment">How can we measure <em>our</em>
+                                stuff</h2>
+
+                            <aside class="notes">Now that we know what we are
+                                measuring, let's see what we do and how to do it.</aside>
+                        </section>
+
+                        <section><h1>We <em>do</em> need to measure</h1>
+                            <img src="../img/deepseek-deception.png" alt="It consumes a lot after all">
+                            <aside class="notes">Check <a
+                            href="https://www.technologyreview.com/2025/01/31/1110776/deepseek-might-not-be-such-good-news-for-energy-after-all/">this
+                                article for details</a>. Boils down to: weights
+                                weigh less, they are used more...</aside>
+                        </section>
+
+                    </section>
+
+
+                    <section> <!-- What we measure -->
+
+                        <section data-background="https://live.staticflickr.com/65535/54396266352_ea1c80d428_k_d.jpg"><h1>What are we measuring</h1>
+                            <h1 class="fragment">Socket ~= Processor → x cores →
+                                y threads</h1>
+                            <h2 class="fragment">DRAM/Memory</h2>
+                            <h3 class="fragment">GPUs</h3>
+                            <h3 class="fragment">Other units: Apple Neural Engine
+                            Architecture, for instance.</h3>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/4326/36244226556_7d53e15634_k_d.jpg"><h1>Cores are not homogeneous</h1>
+                            <h1 class="fragment"><em>P</em> cores for
+                                performance, <em>e</em> cores for
+                                (energy) efficiency</h1>
+                            <h2 class="fragment">Apple Silicon M3 Ultra: 28
+                                p-cores, 8 e-cores</h2>
+
+                            <aside class="notes">Intel <a
+                        href="https://www.reddit.com/r/buildapc/comments/1azdfyn/does_intels_p_and_ecore_architecture_actually/">has
+                                the same kind of architecture, but for different
+                                purposes.</a>. There's some explanation on this
+                                <a
+                        href="https://www.pcgamer.com/hardware/processors/intels-arrow-lake-chips-arent-winning-any-awards-for-gaming-performance-but-i-think-its-new-e-cores-deserve-a-gold-star/">On
+                                    these articles.</a>. E-cores generally
+                        occupy less space, and their clock speed is slower;
+                        these two things together make them consume less
+                        energy. In many cases, they are older architectures
+                                (several generations before) repackaged. In general, modern architectures are designed for peak performance, but also energy management.</aside>
+                            </aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/2839/9103918263_0e99033044_o_d.jpg"><h1>And they are in different states</h1>
+                            <h2 class="fragment">Operating states: <em>C</em>
+                                states</h2>
+                            <h2 class="fragment">In C0 state (Fully turned on):
+                                different P-states change frequency and
+                                voltage</h2>
+                            <h1 class="fragment">Baseline: system does
+                                its best to save energy</h1>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/65535/54233026012_9ec28b1e3b_k_d.jpg"><h1>Processors run machine code
+                            instructions</h1>
+                            <h2 class="fragment">They take different number of
+                                cycles and consume a different amount of
+                                energy</h2>
+                            <h2 class="fragment">And they use on-chip caches,
+                                instructions decoders and so on</h2>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/7565/28018882793_fbc6def141_k_d.jpg"><h1>We need our applications to ride this
+                            system</h1>
+                            <h2 class="fragment">And extract as little power
+                                from it as possible</h2>
+                        </section>
+                        <section
+                            data-background="https://live.staticflickr.com/2849/34018162542_8468e4540c_k_d.jpg"><h1>Good
+                            engineering can help</h1>
+                        </section>
+                    </section>
+
+                    <!-- How can we measure it - Intro -->
+                    <section>
+                        <section data-background="https://live.staticflickr.com/65535/54139459549_29d8f61a60_k_d.jpg"><h1>It's the system that draws energy</h1>
+                            <h2 class="fragment">You can <em>only</em> measure
+                                the whole system</h2>
+                            <h3 class="fragment">Yet you need to measure a
+                                single application</h3>
+                            <aside class="notes">It's theoretically possible
+                    to collect the power spectrum of a whole system and
+                    individuate single instructions, but it's a complicated
+                                technique used mainly for espionage.</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/3241/2462969567_00d9ac6dce_k_d.jpg"><h1>Measure energy drawn from the external
+                            plug</h1>
+                            <h2 class="fragment">Problems: measuring the whole
+                                system (hard disk, external graphics
+                                card)...</h2>
+                            <h2 class="fragment">... And synchronization</h2>
+                            <h3 class="fragment">Good ones can be €€€</h3>
+
+                            <aside class="notes">It's a whole different thing to
+                    what we're looking for, more for hardware testing than for
+                                energy profiling algorithms or
+                                applications. Still, if you're interested in
+                    server workloads instead of software optimization, can be
+                    the right thing to use.</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/1867/29430941267_c9fcfcc9bb_o_d.jpg"><h1>Use system APIs and interfaces</h1>
+                            <h2 class="fragment">Using seudo-registers or system
+                                calls to place <em>estimates</em></h2>
+                            <h2 class="fragment">IOreport for Apple</h2>
+                            <h2 class="fragment">Other devices have different interfaces</h2>
+                            <aside class="notes">In general, we are going to
+                            have some library that we can tap from to get
+                                informed about how every subsystem spends
+                                energy</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/65535/54401153729_e3a038195f_o_d.jpg"><h1>Running average power limit:
+                            <em>RAPL</em></h1>
+                            <h2 class="fragment">Prevalent in the Intel
+                                world (including AMD)</h2>
+
+                            <aside class="notes">It's basically the standard in
+                                x86 platforms</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/1638/25036393132_287b1e490d_o_d.jpg"><h1>Provides <em>registers</em> that estimate
+                            energy usage</h1>
+                            <h2 class="fragment"><code>PKG</code> or "package",
+                                includes all on-chip energy consumption</h2>
+                            <h2 class="fragment">Intel chipsets have more
+                                granularity: memory, core/PP0, uncore/PP1,
+                                "PSys"...</h2>
+
+                            <aside class="notes"><a
+                        href="https://hubblo-org.github.io/scaphandre-documentation/explanations/rapl-domains.html">This
+                              article</a> provides an explanation for the
+                                different parts. Nobody really knows what is
+                        PSys, really, except that it seems to be a bit above
+                        PKG. PKG is simply the total of core, uncore and a bit
+                        else. Also, we will generally work with energy, although
+                        some devices measure power.
+                            </aside>
+                        </section>
+                    </section>
+
+                    <!-- Using power measuring interfaces and tools -->
+                    <section>
+                        <section>
+                            <h1>Measuring energy consumed by an application</h1>
+                            <h2 class="fragment">Command line tools</h2>
+                            <h2 class="fragment">Language-specific
+                                libraries</h2>
+
+                            <aside class="notes">Additionally, some tools like
+                        browsers can have specific energy-measuring APIs. but
+                        these are the two broad categories... At any rate, these
+                        will tap the known energy-measuring low-level APIs, they
+                                are not inventing anything out of thin air</aside>
+                        </section>
+
+                        <section><h1>Using pyJoules</h1>
+                            <pre><code data-line-numbers="2|5-7">import sys
+from pyJoules.energy_meter import measure_energy
+from sacrypt import process_text_v0
+
+@measure_energy
+def run_process(process_func, file_path):
+    process_func(file_path)
+
+if __name__ == "__main__":
+    run_process(process_text_v0, file_path)
+</pre></code>
+
+                            <aside class="notes">Let's start with measuring
+                        using a library; main issue is that it's not general,
+                        and that you need to weed out which one is the best for
+                        you. There are others like codecarbon, that are more
+                        complicated because they insist in needing configuration
+                        and using national APIs to compute prices and carbon
+                        intensity; pyRAPL is quite raw and requests unnecesary
+                        libraries. This one is good enough, and works well
+                                enough pretty much out of the box</aside>
+                        </section>
+
+                        <section><h1><code>sudo</code> make me a sandwich</h1>
+                            <pre><code data-line-numbers="1|1-2">$ sudo ./.venv/bin/python bin/sacrypt-energy.py ../data/3romanzi.txt v1
+begin timestamp : 1742670844.3934789; tag : run_process; duration : 0.08716917037963867; package_0 : 3239548.0; core_0 : 55554.0; nvidia_gpu_0 : 1150</code></pre>
+                            <aside class="notes">Since energy profiles can
+                            reveal a lot about specific things that are being
+                            done in the system, it's been converted into a
+                                privileged API, which needs <code>sudo</code> to run.</aside>
+                        </section>
+
+                        <section
+                    data-background="https://live.staticflickr.com/65535/51977547906_e99fc78d5c_k_d.jpg"><h1>We
+                    need a methodology</h1>
+                            <h2 class="fragment">Use different parameters</h2>
+                            <h2 class="fragment">Repeat for statistical
+                                significance</h2>
+
+                            <aside class="notes">Aristotle was the first
+                        philosopher who understood that observation was more
+                        important than just reason to draw conclusions on
+                        reality. And if Aristotle was never in Sicily, the
+                        Normal school of translators, influenced by the previous
+                        Arab school of translators who had translated Greek
+                        texts into Arab, was key in delivering Aristotelian
+                                philosophy to the world.</aside>
+                        </section>
+
+                        <section><h1>Analyzing Italian literature</h1>
+                            <img src="../img/libri.png" alt="Books used in
+                                      training">
+
+                            <aside class="notes">The one in the middle is
+                                actually used only in combination with the other
+                                two</aside>
+                        </section>
+
+                        <section>
+                            <img src="../img/time-vs-pkg-amd-libri.png"
+                                 alt="Computing time and PKG for 3 books">
+
+                            <aside class="notes">We need a script (written in
+                        this case in Perl) which captures the output of
+                        pyJoules, processes it, and puts in in a format; then we
+                        use R to plot the result. We are plotting the PKG here,
+                        that is, what is consumed by the system-on-chip, which
+                                is normally the most important part of energy
+                        consumption. What we see is that, for every file, there
+                        is roughly a proportion between time and energy spent;
+                        however, this proportion is different for every one,
+                        indicating that the way energy is tapped is
+                        different. Also, there's a certain, mostly horizontal,
+                        spread (that is, you can consume a range of energy even
+                        spending the same time). Spread can be 1-2 joules in
+                                some cases, around 10% of the total measure.
+What we see here is that there's pretty much a linear increase between the size
+                        of the file, time needed to process it and energy
+                        spent. All's good and well, unless you need to process
+                        terabytes of code... Also take into account that we're
+                        measuring 30 times. Energy management in modern
+                        computers makes relatively unpredictable the outcome, so
+                        statistics are sorely needed.
+                            </aside>
+                        </section>
+
+                        <section><img src="../img/mb-per-joule-amd-libri.png"
+                                      alt="MB per J">
+                            <aside class="notes">The number of MBs per J shows a
+                                      slightly different scenario, and one that
+                                      you will find with relative frequency:
+                                      change with size is not
+                                      uniform. malavoglia is the smallest, has a
+                                      medium level of energy expense; then goes
+                                      I Promessi Spossi, which is lower (and
+                                      with higher variability, then these
+                                      together with another one... Issue is, you
+                                need to measure always.
+                            </aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/65535/53224993643_172493ae86_k_d.jpg">
+                            <h2>But we're measuring <em>the whole system</em> here</h2>
+                            <h1 class="fragment">A baseline that eliminates
+                                system overhead is needed</h1>
+                            <h2 class="fragment">We can't do that <em>from the
+                                program itself</em></h2>
+
+                        </section>
+
+                    </section>
+
+                    <!-- Measuring energy and the baseline -->
+                    <section>
+                        <section
+                    data-background="https://live.staticflickr.com/65535/51821342970_3278590473_k_d.jpg"><h1>We
+                    need to profile the system doing nothing</h1>
+                            <h2 class="fragment">And we need a external program
+                    for that</h2>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/65535/52549465925_b0412b358c_k_d.jpg"><h1>Let's check the marketplace</h1>
+                            <table><tr><th>Command</th><th>Platforms</th><th>Attaches
+                                to command</th></tr>
+
+                                <tr class="fragment fade-in"
+                                    data-fragment-index="3"><td><span class="fragment highlight-blue" data-fragment-index="4"> <code>pinpoint</code></span></td><td>RAPL,
+                                    IOReport for M1, others</td><td>Yes</td>
+                                </tr>
+
+                                <tr class="fragment fade-in" data-fragment-index="2"><td><code>perf</code></td><td>Linux</td><td>No</td></tr>
+                                <tr class="fragment fade-in"
+                                    data-fragment-index="1"><td><code>pumas</code></td><td>Mac</td><td>No</td></tr>
+
+                            </table>
+
+                            <aside class="notes">Those are the two things
+                                that you need: there should be an uniform way of
+                                measuring consumption in different environments, and
+                                you should be able to run the command that contains
+                                your workload, what you're insterested in. If it's
+                                not run with your command, but in the background
+                                (and can be started or killed, or simply kinda find
+                                what was happenning when your command was running)
+                                you need a certain amount of instrumentation to get
+                                it going.So pinpoint it is</aside>
+
+                        </section>
+
+                        <section><h1>Let's profile... nothing!</h1>
+                            <pre><code>$ sudo pinpoint sleep 1
+Energy counter stats for 'sleep 1':
+[interval: 50ms, before: 0ms, after: 0ms, delay: 0ms, runs: 1]
+
+	10.64 J nvml:nvidia_geforce_rtx_4070_super_0
+	22.17 J rapl:pkg
+
+	1.00109098 seconds time elapsed </pre></code>
+                        <aside class="notes">We need to repeat this a number of
+                            times until we get a good measurement and for a
+                        number of different "sleep" values.</aside>
+                    </section>
+
+                    <section>
+                            <img src="../img/time-vs-pkg-sleep.png" alt="base
+                            energy expenses">
+                            <aside class="notes">With this, we know how many
+                                joules per second the system spends: we can
+                                subtract them from our measurements. We use a
+                            linear model to establish the slope, which will be
+                            the joules spent per second. Take into account that
+                            this is wallclock time.</aside>
+                    </section>
+
+                    <section><img src="../img/boxplot-delta-pkg-amd-libri.png"
+                                  alt="real energy spent">
+
+                        <aside class="notes">What we are doing here is
+                    multiplying the amount of J the system spends in the actual
+                    time this is running, and subtracting it from the measured
+                    amount. This would be the result. We can see with a bit more
+                    precision how much energy is actually spent in every one of
+                            the three files, and how it's distributed. The
+                    bigger, the bigger possibility there's an outlier, but we
+                    can also see that it's not a normal distribution, so we can
+                    only use statistics to establish some measurement. </aside>
+                    </section>
+                    </section>
+
+                    <!-- Now we know how to measure: let's improve everything!
+                    -->
+
+                    <!-- Levels of improvement -->
+                    <section>
+                        <section><h1>Choices for greener algorithms: many moving parts</h1>
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/en/b/b8/Computer_graphic_for_front_of_Antikythera_mechanism.jpg?download"
+                                alt="Antikythera front panel: By Tony Freeth -
+                    Original publication: The Antikythera Mechanism Research
+                    ProjectImmediate The Antikythera Mechanism Research Project,
+                    Fair use,
+                                     https://en.wikipedia.org/w/index.php?curid=36445602">
+                            <h2 class="fragment">Machine/OS/Hardware
+                                platform</h2>
+                            <h2 class="fragment">Language</h2>
+                            <h2 class="fragment">Language-specific
+                                optimizations</h2>
+
+                            <aside class="notes">That's the long and short of
+                        it, but the take away here is that you need to think
+                                about the leverage you have before the whole
+                        enterprise. The image is the antikythera front panel,
+                        showing many moving parts (most of which scientists
+                        don't know what to make with, BTW).</aside>
+                        </section>
+
+                        <section><h1>Some rules of thumb for energy savings</h1>
+                            <h2 class="fragment">Hardware: several orders of
+                                magnitude</h2>
+                            <h2 class="fragment">Language 2-3 orders of
+                                magnitude</h2>
+                            <h2 class="fragment">Program: 1 order of magnitude</h2>
+                        </section>
+
+                        <section
+                            data-background="https://live.staticflickr.com/65535/51381422791_e01d052406_k_d.jpg"><h1>Trade-off
+                            energy/time</h1>
+                            <h2 class="fragment">At the hardware/language level,
+                                at least</h2>
+                            <h2 class="fragment">There's no free lunch, but we
+                                can have very cheap lunch at the program
+                                level</h2>
+                        </section>
+
+                        <section><h1>Exactly the opposite than Archimedes</h1>
+                            <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/8/80/Archimedes-Mirror_by_Giulio_Parigi.jpg"
+                                alt="Heat ray of Archimedes">
+
+                            <aside class="notes">Archimedes used mirrors to
+                        concentrate the maximum amount of energy in the minimum
+                        amount of time so that it could burn the sails of the
+                        Roman ships that were attacking Syracuse in the 3rd
+                        century B. C. during what was called the second Punic
+                                War, or second war of the Roman Republic against
+                        the Carthaginians. Archimedes was a scientist and
+                        engineer living in what was then a thriving Greek city </aside>
+                        </section>
+                    </section>
+
+                    <!-- Two different platforms -->
+                    <section>
+                        <section
+                    data-background="https://live.staticflickr.com/65535/54409926119_565f51ac62_k_d.jpg"><h3>AMD
+                            desktop vs. Intel laptop</h3>
+                            <img src="../img/amd-vs-intel-libri.png">
+                            <aside class="notes">The computer is pre-pandemia so
+                    it need not be so, but in general, this is going to happen:
+                    you will have to trade energy consumption for time: if it
+                    consumes less, it will usually take more time. This is
+                    mainly due to core clock speed; less clock speed will have
+                                less performance and consume less</aside>
+                        </section>
+
+                        <section><h1>Energy-delayed product: worth the while to
+                            trade?</h1>
+                            <img src="../img/edp-amd-vs-intel-libri.png"
+                                 alt="EDP for desktop/laptop">
+                            <aside class="notes">So, unless we're talking about
+                            the smallest size, it's not really worth the while,
+                            all in all, to trade performance for energy consumption. The decrease
+                            in the amount of energy spent does not compensate
+                            trading one of my computers for the other. But
+                            that's only one case, maybe it's worth the while if
+                                we compare other computers that are closer in
+                                generation. Remember, always measure and compare.</aside>
+                        </section>
+
+                        <section
+                        data-background="https://live.staticflickr.com/65535/52415486693_8491f87a0a_k_d.jpg"><h1>What
+                            happens to my Mac?</h1>
+                            <h1 class="fragment">It's complicated</h1>
+                            <h2 class="fragment">Using <code>pumas</code>:
+                                getting Watts</h2>
+
+                            <aside class="notes">The problem is that it's not a
+                        public or documented interface so it's complicated to
+                        work with. The people that created pinpoint managed to
+                        make it work for the M1, and tried M2, but failed. Since
+                        it's not documented or official, and apparently only for
+                                internal use, it changes every time</aside>
+                        </section>
+
+                        <section><h3>Even so...</h3>
+                            <img src="../img/watts-amd-vs-mac.png" alt="Watts:
+                                      mac vs Amd Desktop">
+                            <aside class="notes">We had to make a series of
+                            choices: using CPU instead of package, and also we
+                            couldn't have the baseline... Basically, using
+                            different tools it's complicated to really establish
+                            a comparison. Offhand, looks like a Mac with M2
+                                consumes <em>more</em> than a big bold desktop
+                            with AMD... The thing is, timing the run it's
+                            spending much less time in the CPU than the reported
+                                time... So really, we don't know. The fact that
+                            there is very little increment with file size points
+                            to the fact that the baseline is very high. But it's
+                            difficult to know.</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/830/41251892184_e4ebfd6c04_k_d.jpg"><h1>We need better multi-platform tools</h1>
+                            <h2 class="fragment">So that we can compare apples
+                                to apples</h2>
+
+                            <aside class="notes">The Apple Silicon, However,
+                        seems to be very energy aware, and this that happens for
+                        this specific problem need not happen for others. We
+                        need to establish a baseline, however, although again,
+                                that's complicated</aside>
+                        </section>
+
+                        <section><h3>Back to the laptop: should I pull the
+                            plug?</h3>
+                            <img src="../img/plugged-vs-unplugged-intel.png"
+                                 alt="plugged or not">
+
+                            <aside class="notes">Just pulling the plug saves a
+                                bit, around 10%, at least for workloads of a
+                                certain size</aside>
+                        </section>
+
+			<section><h1>Many other possibilities for running programs</h1>
+			  <h2 class='fragment'><em>E</em> cores: run as a <em>daemon</em> or background task</h2>
+
+			  <h2 class='fragment'>Use command line or Mac-specific libraries</h2>
+			  <h2 class='fragment'>Possibly good EDP</h2>
+			  <aside class='notes'>You always need to measure. Generally E cores are either old cores, or cores running at less megahertz, so it's not really clear what you will get out of it.</aside>
+			</section>
+
+			<section>
+			  <h1>What about GPUs?</h1>
+			  <h2 class='fragment'>You will need specialized libraries/languages</h2>
+			  <h2 class='fragment'>In many cases, they are very energy-efficient</h2>
+			  <h3 class='fragment'>But CPU-running code might ruin any saving</h3>
+			</section>
+
+			<section><h1>Specialized "Neural" units</h1>
+			  <h2 class='fragment'>Apple Neural Architecture</h2>
+			  <h3 class='fragment'>You need specialized libraries to use it</h3>
+			  <h3 class='fragment'>Potentially, huge savings</h3>
+			  <aside class='notes'>For instance, this is <a href='https://machinelearning.apple.com/research/neural-engine-transformers'>a study</a> on how to use it and why; besides, it's present on all Apple devices, not only computers.</aside>
+			</section>
+                    </section>
+
+                    <!-- Changing language platform or compiler or language -->
+                    <section>
+
+                      <section data-background="https://live.staticflickr.com/65535/48610436077_732ce83d23_k_d.jpg"><h1>Can we beat Python</h1>
+                            <h2 class="fragment">JavaScript is a very popular
+                                language</h2>
+                            <h2 class="fragment"><code>% Copilot rewrite this in
+                    node.js</code></h2>
+                        </section>
+
+                        <section><h2>Leaving Python in the dust</h2>
+                            <img src="../img/node_vs_python_pkg_seconds.png"
+                                 alt="Python vs. node"
+                            >
+                            <aside class="notes">It's much faster, scales
+                                better, does everything better... Without
+                                tweaking</aside>
+                        </section>
+
+                        <section><h3>What about different interpreters for
+                            JavaScript? node vs. bun</h3>
+                            <img src="../img/node_vs_bun_pkg.png" alt="node
+                                      vs. bun">
+                            <aside class="notes">bun is written in zig, and it's
+                            one of the major "killer apps" of this relatively
+                                new language. There's yet another version of
+                            javascript, called deno, and Microsoft just produced
+                            a new one. Next, let's go for low-level languages.</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/65535/53041447064_b9c85226ef_k_d.jpg">
+                        <h1>Recursivity is a technique of solving a
+                            problem by having a function call itself</h1>
+                            <h2 class="fragment"><em>Archimedes</em> introduced
+                                it to compute the perimeter of the circumference
+                                while in Syracuse</h2>
+                            <h3 class="fragment">Involves language specifics in
+                                function call and returns</h3>
+                        </section>
+
+                        <section><h1>Hierarchical if and only if</h1>
+                            <h2 class="fragment">Used in benchmarks for
+                                evolutionary algorithms</h2>
+                            <h2 class="fragment">Is the classical C++ better
+                                than the up-and-coming zig?</h2>
+                        </section>
+
+                        <section><h3>Visit poster session next
+                            Wed. Spoiler...</h3>
+                            <img class="fragment"
+                                 src="../img/delta_energy_vs_time_hiff_preso.png"
+                                 alt="Comparison HIFF vs. C++">
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/65535/53869993360_090d3e7242_k_d.jpg"><h1> High level/interpreted languages >> JIT interpreted languages >> VM/bytecode languages (Java) >> OO/Procedural low-level languages (C++, C) >> Functional languages
+			</h1>
+
+                        <aside class="notes">For instance in <a
+		                                                 href="https://ieeexplore.ieee.org/abstract/document/9830107?casa_token=nFL4xxZ8Fe4AAAAA:WORg8eLTkI3Qr7oViypy4Nc7cwdzA5Z0vDAQevfIjMD-Ma5PLjiDxrKm3wuRTZYgPZllexaZtw">this
+		            paper explores consumption</a>, but there are quite
+		            a few. This is controversial, since some papers claim
+		            that it's simply proportional to running time; <a
+		                                                 href="https://arxiv.org/abs/2410.054601">this
+		                                                 paper is a
+		                                                 recent critique
+		            to it</a></aside>
+		        </section>
+
+                        <section><h3>Different levels: it's complicated</h3>
+                            <img src="../img/HIFF-PKG-vs-seconds-green.png"
+                                 alt="zig, kotlin and bun">
+                            <aside class="notes">Here you can see that the
+                            relationship between zig (compiled using LLVM) and
+                            Kotlin (which works on the JVM) is complicated:
+                            Kotlin is slower, but consumes less energy; in this
+                                case working with the HIFF function for
+                                different "chromosome" sizes. You can also see
+                            that dispersion of the values go in different
+                            directions: zig is more dispersed on the energy
+                            side, kotlin on the time side.</aside>
+                        </section>
+                    </section>
+
+                    <!-- Changes in how you run the program -->
+                    <section>
+                        <section><h1>You can change how you run/compile a
+                            program</h1>
+                            <h2 class="fragment">Non-zero impact with no change
+                                in code</h2>
+                            <h2 class="fragment">Result can be counter-intuitive</h2>
+
+                            <h3 class="fragment">Always measure and compare</h3>
+                            <aside class="notes">No change is going to be "make
+                        this consume less", it's always tweaks in code
+                        generation or in other ways of running it. So you need
+                        to always measure</aside>
+                        </section>
+
+                        <section><h1>Eliminate debugging/profiling information
+                            when compiling</h1>
+                            <h2 class="fragment">Less use of memory, less
+                                CPU</h2>
+                            <h2 class="fragment">This should be obvious, but
+                                scientific computing is rarely following best practices</h2>
+                        </section>
+
+                        <section><h1>Use processor-specific machine instructions</h1>
+
+			    <pre><code data-line-numbers="2">g++-14
+			      -march=native
+			      -std=c++2a
+			      -Wall
+			      chromosomes.cc generate_chromosomes.cc -o chromosomes</code></pre>
+                        </section>
+
+			<section><h1>Use specific compiler/language standard versions</h1>
+			  <pre><code data-line-numbers="1|3|4">g++-14
+			      -march=native
+			      -Ofast
+			      -std=c++17
+			      -Wall
+			      chromosomes.cc generate_chromosomes.cc -o chromosomes</code></pre>
+			</section>
+
+			<section><h1>Other VMs/compilers/interpreters have
+			    runtime option</h1>
+			  <h2 class='fragment'>They are specific, need to check
+			      those that allow options mentioned above</h2>
+                          <h2 class="fragment">Always check versions for power
+			      consumption</h2>
+                          <aside class="notes">In <a
+			    href="https://medium.com/growing-green-software/comparing-java-virtual-machine-energy-efficiency-e2e8658539b8">this
+			    article, for instance, they see that version 21 and
+			    22 consume more or less the same, but version 17
+			      consumes almost 30% more</a>
+			</section>
+
+                        <section data-background="https://live.staticflickr.com/4676/26693936178_bbfb6347be_k_d.jpg"><h1>Rule of thumb: latest versions improve
+                            efficiency ⇒ lower consumption</h1>
+                            <h2 class="fragment">Your mileage may vary if
+                                there's a change of standard</h2>
+                            <h2 class="fragment">Or if it's C++</h2>
+                        </section>
+
+                    </section>
+
+                    <!-- Improve the code of the program -->
+                    <section>
+                        <section data-background="https://live.staticflickr.com/65535/54392222903_c056b3f283_k_d.jpg"><h1>Know your language</h1>
+                            <h2 class="fragment">Using language-specific
+                                patterns can improve performance</h2>
+                            <h2 class="fragment">Functional constructs are
+                                usually (much) faster</h2>
+                        </section>
+
+                        <section><h1>Eureka!</h1>
+                            <pre><code data-line-numbers="1-41|6-13|7-8|10-12">def process_text_v0(file_path):
+    text = read_file(file_path)
+    cleaned_text = eliminate_whitespace_and_punctuation(text)
+    return calculate_frequency(cleaned_text)
+
+def process_text_v1(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        frequency = Counter(chain.from_iterable(line.lower() for line in file))
+
+    for symbol in list(frequency.keys()):
+        if not symbol.isalpha():
+            del frequency[symbol]
+    return frequency</code></pre>
+                            <aside class="notes">basically we're doing all the
+        work in a single line of code, with some cleaning after. The first
+        version is clean code, single responsibility principle and all that,
+                                very testable... The other might be a bit faster. How much?</aside>
+                        </section>
+
+                        <section><h3>(Senior) Python leaving (Junior/AI-generated) Python in
+                            the dust</h3>
+                            <img src="../img/v0_vs_v1_pkg.png" alt="comparison
+                                      v0 vs v1">
+                            <aside class="notes">Not quite an order of
+                                magnitude, but a substantial improvement anyway</aside>
+                        </section>
+                    </section>
+
+                    <!-- Conclusions -->
+                    <section>
+                    <section
+                        data-background="https://live.staticflickr.com/5/6263677_4e63455a77_o_d.jpg"><h2>Archimedes
+                        was one of the first to create a
+                        precise measuring device: an <em>odometer</em> to
+                        measure distances</h2>
+                        <h1 class="fragment">Like him, <em>always measure</em>
+                            when a change is made</h1>
+                        <aside class="notes">The result can be
+                            counter-intuitive</aside>
+                    </section>
+
+                    <section data-background="https://live.staticflickr.com/65535/53779983939_88e62d2528_k_d.jpg"><h2>Archimedes created catapults with varying range
+                        and size to defeat the Romans</h2>
+                        <h1 class="fragment">Prepare experiments at different
+                            problem sizes</h1>
+                    </section>
+
+                    <section data-background="https://live.staticflickr.com/65535/54191415771_f2c28a7b99_k_d.jpg"><h2>Archimedes managed to keep the Romans at bay
+                        through engineering</h2>
+                        <h1 class="fragment">Good engineering goes a long way
+                            towards saving energy</h1>
+                        <h2 class="fragment">And proving you're better than an
+                        AI</h2>
+                    </section>
+
+                    </section>
+
+
+		</div>
+	    </div>
+
+	    <script src="dist/reveal.js"></script>
+	    <script src="plugin/notes/notes.js"></script>
+	    <script src="plugin/highlight/highlight.js"></script>
+	    <script>
+	     Reveal.initialize({
+		 hash: true,
+                 width: "95%",
+		 height: '100%',
+		 controls: true,
+		 progress: true,
+		 backgroundTransition: 'convex',
+		 plugins: [ RevealHighlight, RevealNotes ]
+	     });
+	    </script>
+	</body>
+</html>
