@@ -1,0 +1,128 @@
+\documentclass[a4paper]{article}
+\usepackage{hyperref}
+\begin{document}
+
+\title{Engineering greener software}
+
+\author{JJ Merelo-Guervós\\
+  Department of Computer Engineering, Automatics and Robotics\\
+  University of Granada (Spain)\\
+  Email: {\sf jmerelo@ugr.es} }
+
+
+\maketitle
+
+\section{Abstract}
+
+{\em Green} computing is a general term that describes a host of techniques that
+try to minimize the carbon footprint of software applications. As such, it is
+not a single body of knowledge, but a series of best practices that help reduce
+energy consumption relying on the features of any of the different layers that
+are exercised by software applications. This represents a challenge at the time
+of designing a comprehensive syllabus that would help students develop the
+series of skills needed to identify energy bottlenecks and eliminate them. In
+this poster we will describe the different concepts involved, and how they will
+be delivered to guarantee the achievement of learning objectives.  Green
+computing deals with reducing the environmental impact of the creation and use
+of computing resources. From the software perspective, it proposes maximizing
+the amount of work done for every unit of energy spent. But to achieve that, how
+energy is spent across all the different computing layers need to be assessed
+and understood.
+
+The challenge of introducing energy efficiency concerns into software
+engineering has been recently acknowledged by the joint IEEE/ACM task
+force. Environmental concerns is one of the skills mentioned in the draft
+competencies in software engineering as part of the needed ``behavioral
+attributes'' as well as in the Master's degree in Information Systems (IS), as
+part of the IS Strategy and Governance competence; the computer engineering set
+of draft competencies includes it as part of the Systems Resource Management
+subject matter.
+
+And this engineering starts with understanding how energy management works in
+current hardware, and how this interferes with precise measurement of how much
+energy has been spent by a particular workload.
+
+The last part of the tutorial will be devoted to understanding how different
+evolutionary algorithms spend energy, and how energy performance can be taken
+into account in meta-algorithms such as hyperheuristics.
+
+\section{Tutorial description}
+
+We will first focus on the kind of learning objectives we have in mind for this
+tutorial, to then outline how these objectives are going to be progressively
+presented.
+
+\subsection{Learning objectives}
+
+The final objective would be to get the attendant to understand how choices of
+hardware, software platform and algorithm parameters will affect the
+environmental impact of the evolutionary algorithm workload that is going to be
+created or refactored and which best practices need to be involved to reduce
+that impact, including, in many cases, how to deal with the energy/precision
+tradeoff. Underneath, a practical understanding of the energy management in
+modern computer systems is also an objective. The challenges of energy
+profiling algorithm implementations will be also presented; finally, how the
+{\em noisy} nature of energy measurements needs to be taken into account for
+either online or offline optimization of the algorithms.
+
+\subsection{Outline}
+
+\begin{itemize}
+\item {\bf Understanding the hardware}: Computing units (CPU, GPU, memory) and
+  their energy profiles. Energy-wise heterogeneous architectures. Energy
+  consumption sensors and standard APIs to get measurements from them
+  (e.g. RAPL). Interfaces to the computing power configuration and
+  administration system (e.g., ACPI). ({\em 15 minutes})
+\item {\bf Understanding how the workload spends energy}: software profiling,
+  methodologies, and tools for energy profiling (PowerMeter, {\sf pinpoint},
+  {\sf perf}, hardware meters). This will help the student identify bottlenecks
+  from the point of view of performance as well as energy consumption; also find
+  out how this consumption scales with workload size. ({\em 15 minutes})
+\item {\bf Methodologies for energy and power measurement}, that is, how
+  experiments need to be designed in order to have as precise a measurement of
+  energy expenses as possible.
+\item {\bf Energy profiling an algorithm implementation}, on how to find out how
+  much energy an algorithm is spending. ({\em 20 minutes})
+\item {\bf Refactor for reduction of energy footprint}: once the bottlenecks
+  have been identified and specific benchmarks developed to measure the energy
+  footprint, the student needs to work across the board to reduce the footprint:
+  choosing the computing platform where possible, configuring the application to
+  work on specific computing units, choosing the programming language toolchain
+  that reduces energy consumption (such as the compiler or interpreter) or
+  configuring it, change in data structures used to store and process data or
+  leveraging of multi-threading or symmetric multiprocessing capabilities. ({\em
+    30 minutes})
+\end{itemize}
+
+\subsection{Tutorial categorization}
+
+This is an introductory tutorial for people with basic knowledge of statistical
+techniques as well as programming; I would say that covers 99\% of the congress
+attendants.
+
+\section{Potential target audience}
+
+That is difficult to say. There are many researchers investigating on the
+subject, and it could be potentially interesting for anyone in the area of
+hyperheuristics. It is also targeted at people implementing evolutionary
+algorithms, which is basically everyone.
+
+\section{Expected number of participants}
+
+Other tutorials I have given have gathered 25-30 persons. I guess that
+potentially all students and postdocs could be interested, as well as
+established hyperheuristic researchers.
+
+\section{Previously held versions on the tutorial}
+
+A tutorial with the same title in was delivered in ACM SAC'25 Catania (Italy),
+it included the state of the art as known back then. We have published since
+then several papers, and our experimental techniques as well as methdologies are
+much more advanced right now.
+
+I also coordinated a summer school with the same topic, in Spain in the summer
+of 2024; my (introductory) lesson was in the same general area.
+
+\end{document}
+\endinput
+
