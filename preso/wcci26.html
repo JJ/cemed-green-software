@@ -69,8 +69,7 @@
                   </section>
 
                         <section><h1>But also...</h1>
-                            <img src="../img/future-se.png" alt="Do we have a
-                                      future?">
+                            <img src="../img/future-se.png" alt="Do we have a future?">
 
                             <aside class="notes">The (near) future is not in
                         writing code. It's in arranging the engineering of the
@@ -114,208 +113,8 @@
                     <section data-background="https://live.staticflickr.com/65535/52547418475_4ba8cd07e7_k_d.jpg"><h1>Tutorial organization</h1>
                         <h2 class="fragment">Energy/power and all that</h2>
                         <h2 class="fragment">How and where power is spent</h2>
-                        <h2 class="fragment">Measuring energy expenses</h2>
+                        <h2 class="fragment">Measuring energy spent</h2>
                         <h2 class="fragment">Modeling energy consumption</h2>
-                    </section>
-
-                    <section>
-                        <section data-background="https://upload.wikimedia.org/wikipedia/commons/9/9e/Maquina_vapor_Watt_ETSIIM.jpg"><h1>System operations draw <em>power</em></h1>
-                            <h2 class="fragment">Measured in <em>watts</em></h2>
-                            <aside class="notes">This is the antipasto, just a
-                        bit of physical terminology so that everyone of us
-                                understands what we're talking about</aside>
-                        </section>
-
-                        <section data-background="https://live.staticflickr.com/101/298130050_360ac32456_o_d.jpg"><h1>... And they consume
-                            <em>energy</em></h1>
-                            <h2>Measured in
-                                <em>joules</em></h2>
-
-                            <h3>Energy = power x time</h3>
-                            <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Sandorf_Grating.jpg"
-                            alt="Cipher grating used in Matthias Sandorf book by
-                            Jules Verne">
-                            <aside class="notes">It's the only book that
-                                mentions Sicily... not the only one to mention
-                                cipher. 1 kWh = 3.6 10⁶ J. This is what you pay
-                            for in your electricity bill... And what we're
-                            interested in minimizing.
-                            </aside>
-                        </section>
-                    </section>
-
-                    <!-- We need to understand what's going on in the system -->
-                    <section>
-                        <section><h1>Letter substitution cipher introduced by Greeks</h1>
-                            <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/2/21/Polybius_square.png"
-                    alt="Polybius square" class="fragment" style="width:400px">
-                            <h2 class="fragment">Polybius square letter →
-                                2-number coordinate</h2>
-
-                            <aside class="notes">We need to think about a single
-                        problem when measuring energy. So let's check out this
-                                problem, which is relevant to the current
-                        space... ish. Sicily was greek for a long time,
-                        actually, and it was one of the first places to trade,
-                                and then host spin offs of different Greek
-                                <em>poleis</em>.
-                                This would be kind of a contorni, introducing a
-                        problem we will be dealing with, and tweaking, for the
-                                rest of the tutorial</aside>
-                            </aside>
-                        </section>
-
-                        <section><h1>Caesar's code is similar</h1>
-                            <h2 class="fragment">Provenzano, il <em>capo di
-                                tutti capi</em>, used a variant of this for his
-                                messages</h2>
-<h1 class='fragment'>Can be broken by cryptanalisis</h1>
-                                <aside class="notes">About the <a href="http://itre.cis.upenn.edu/myl/languagelog/archives/003049.html">Provenzano code</a></aside>
-                        </section>
-
-                        <section><h1>Cryptanalisis introduced by Al-Kindi, 9th
-                            century</h1>
-                            <h2 class="fragment">Also reintroduced Greek philosophy
-                                to the Muslim world</h2>
-                            <h2 class="fragment">Muslim Sicily: a hub for Muslim
-                                philosophy</h2>
-                            <h3 class="fragment">Did Sicily open cryptanalysis
-                                to the world?</h3>
-                        </section>
-
-                        <section><h1>Symbol frequency in Python</h1>
-
-                            <pre><code data-line-numbers="1-10|12-13">def eliminate_whitespace_and_punctuation(text):
-    translator = str.maketrans(
-                   '', '',
-                     string.whitespace + string.punctuation + '«»“”‘’'
-                 )
-    text = ''.join(filter(str.isalpha, text.translate(translator)))
-    return ''.join(
-        c for c in unicodedata.normalize('NFD', text)
-        if unicodedata.category(c) != 'Mn'
-    )
-
-def calculate_frequency(text):
-    return Counter(text.lower())</code></pre>
-
-                            <aside class="notes">Simple enough, using standard
-                                library functions like Counter and maketrans.
-                                We are using here a mainstream, high level,
-                                language. Cryptanalisis is about analyzing symbol frequency in a corpus, and comparing it to a known table of frequencies. Easy enough, if you know what's the language, or even if you don't. Let's try to work that out.</aside>
-                            </aside>
-
-                        </section>
-
-                        <section><h3>Analyzing "I promessi spossi"</h3>
-<table>
-<thead>
-<tr>
-<th>Symbol</th>
-<th>Frequency</th>
-<th>Symbol</th>
-<th>Frequency</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>æ</td>
-<td>1</td>
-<td>p</td>
-<td>30449</td>
-</tr>
-<tr>
-<td>k</td>
-<td>3</td>
-<td>u</td>
-<td>36561</td>
-</tr>
-<tr>
-<td>y</td>
-<td>8</td>
-<td>d</td>
-<td>38203</td>
-</tr>
-<tr>
-<td>w</td>
-<td>16</td>
-<td>c</td>
-<td>48117</td>
-</tr>
-<tr>
-<td>j</td>
-<td>22</td>
-<td>s</td>
-<td>56020</td>
-</tr>
-<tr>
-<td>x</td>
-<td>139</td>
-<td>l</td>
-<td>57179</td>
-</tr>
-<tr>
-<td>z</td>
-<td>7803</td>
-<td>t</td>
-<td>62603</td>
-</tr>
-<tr>
-<td>q</td>
-<td>7997</td>
-<td>r</td>
-<td>67736</td>
-</tr>
-<tr>
-<td>b</td>
-<td>10036</td>
-<td>n</td>
-<td>74764</td>
-</tr>
-<tr>
-<td>f</td>
-<td>10811</td>
-<td>i</td>
-<td>98025</td>
-</tr>
-<tr>
-<td>h</td>
-<td>13831</td>
-<td>o</td>
-<td>99056</td>
-</tr>
-<tr>
-<td>g</td>
-<td>17556</td>
-<td>a</td>
-<td>118096</td>
-</tr>
-<tr>
-<td>v</td>
-<td>23585</td>
-<td>e</td>
-<td>123592</td>
-</tr>
-<tr>
-<td>m</td>
-<td>24233</td>
-
-</tr>
-
-</tbody>
-</table>
-<aside class="notes">Takes 1/5th of a second...</aside>
-                        </section>
-
-                        <section
-                            data-background="https://live.staticflickr.com/65535/53869830403_c540595ed3_k_d.jpg">
-                            <h1>Do we know how much energy does it consume?</h1>
-
-                            <aside class="notes">So we get to the primo piatto,
-                                how and where power is spent</aside></section>
-                        </section>
                     </section>
 
                     <!-- Structuring measuring energy -->
@@ -356,31 +155,39 @@ def calculate_frequency(text):
                             <h1 class="fragment"><em>P</em> cores for
                                 performance, <em>e</em> cores for
                                 (energy) efficiency</h1>
-                            <h2 class="fragment">Apple Silicon M3 Ultra: 28
-                                p-cores, 8 e-cores</h2>
+
+                            <h1 class="fragment">Multi-die architecture</h1>
+                            <h2 class="fragment">Sometimes with heterogeneous frequency/voltage</h2>
 
                             <aside class="notes">Intel <a
                         href="https://www.reddit.com/r/buildapc/comments/1azdfyn/does_intels_p_and_ecore_architecture_actually/">has
                                 the same kind of architecture, but for different
                                 purposes.</a>. There's some explanation on this
                                 <a
-                        href="https://www.pcgamer.com/hardware/processors/intels-arrow-lake-chips-arent-winning-any-awards-for-gaming-performance-but-i-think-its-new-e-cores-deserve-a-gold-star/">On
+                                    href="https://www.pcgamer.com/hardware/processors/intels-arrow-lake-chips-arent-winning-any-awards-for-gaming-performance-but-i-think-its-new-e-cores-deserve-a-gold-star/">On
                                     these articles.</a>. E-cores generally
-                        occupy less space, and their clock speed is slower;
-                        these two things together make them consume less
-                        energy. In many cases, they are older architectures
-                                (several generations before) repackaged. In general, modern architectures are designed for peak performance, but also energy management.</aside>
+                                occupy less space, and their clock speed is slower;
+                                these two things together make them consume less
+                                energy. In many cases, they are older architectures
+                                (several generations before) repackaged. In
+                                general, modern architectures are designed for peak
+                                performance, but also energy management. Apple Silicon M3 Ultra: 28
+                                    p-cores, 8 e-cores
                             </aside>
                         </section>
 
-                        <section data-background="https://live.staticflickr.com/2839/9103918263_0e99033044_o_d.jpg"><h1>And they are in different states</h1>
-                            <h2 class="fragment">Operating states: <em>C</em>
-                                states</h2>
-                            <h2 class="fragment">In C0 state (Fully turned on):
-                                different P-states change frequency and
+                        <section
+                            data-background="https://www.flickr.com/photo_download.gne?id=54749497087&secret=fb4c23dbcb&size=k&source=photoPageEngagement"><h1
+                            class="fragment">System
+                            does its best to keep processor temperature in a range</h1>
+                            <h2 class="fragment">Different states change frequency and
                                 voltage</h2>
                             <h1 class="fragment">Baseline: system does
                                 its best to save energy</h1>
+                            <aside class="notes">Still lifes are all about
+                            state: different elements are in different states of
+                            ripeness, of, well, life, and movement. The problem
+                                they need to solve is essentially about that</aside>
                         </section>
 
                         <section data-background="https://live.staticflickr.com/65535/54233026012_9ec28b1e3b_k_d.jpg"><h1>Processors run machine code
@@ -722,20 +529,6 @@ Energy counter stats for 'sleep 1':
                                 level</h2>
                         </section>
 
-                        <section><h1>Exactly the opposite than Archimedes</h1>
-                            <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/8/80/Archimedes-Mirror_by_Giulio_Parigi.jpg"
-                                alt="Heat ray of Archimedes">
-
-                            <aside class="notes">Archimedes used mirrors to
-                        concentrate the maximum amount of energy in the minimum
-                        amount of time so that it could burn the sails of the
-                        Roman ships that were attacking Syracuse in the 3rd
-                        century B. C. during what was called the second Punic
-                                War, or second war of the Roman Republic against
-                        the Carthaginians. Archimedes was a scientist and
-                        engineer living in what was then a thriving Greek city </aside>
-                        </section>
                     </section>
 
                     <!-- Two different platforms -->
@@ -872,44 +665,6 @@ Energy counter stats for 'sleep 1':
                             a new one. Next, let's go for low-level languages.</aside>
                         </section>
 
-                        <section data-background="https://live.staticflickr.com/65535/53041447064_b9c85226ef_k_d.jpg">
-                        <h1>Recursivity is a technique of solving a
-                            problem by having a function call itself</h1>
-                            <h2 class="fragment"><em>Archimedes</em> introduced
-                                it to compute the perimeter of the circumference
-                                while in Syracuse</h2>
-                            <h3 class="fragment">Involves language specifics in
-                                function call and returns</h3>
-                        </section>
-
-                        <section><h1>Hierarchical if and only if</h1>
-                            <h2 class="fragment">Used in benchmarks for
-                                evolutionary algorithms</h2>
-                            <h2 class="fragment">Is the classical C++ better
-                                than the up-and-coming zig?</h2>
-                        </section>
-
-                        <section><h3>Visit poster session next
-                            Wed. Spoiler...</h3>
-                            <img class="fragment"
-                                 src="../img/delta_energy_vs_time_hiff_preso.png"
-                                 alt="Comparison HIFF vs. C++">
-                        </section>
-
-                        <section data-background="https://live.staticflickr.com/65535/53869993360_090d3e7242_k_d.jpg"><h1> High level/interpreted languages >> JIT interpreted languages >> VM/bytecode languages (Java) >> OO/Procedural low-level languages (C++, C) >> Functional languages
-			</h1>
-
-                        <aside class="notes">For instance in <a
-		                                                 href="https://ieeexplore.ieee.org/abstract/document/9830107?casa_token=nFL4xxZ8Fe4AAAAA:WORg8eLTkI3Qr7oViypy4Nc7cwdzA5Z0vDAQevfIjMD-Ma5PLjiDxrKm3wuRTZYgPZllexaZtw">this
-		            paper explores consumption</a>, but there are quite
-		            a few. This is controversial, since some papers claim
-		            that it's simply proportional to running time; <a
-		                                                 href="https://arxiv.org/abs/2410.054601">this
-		                                                 paper is a
-		                                                 recent critique
-		            to it</a></aside>
-		        </section>
-
                         <section><h3>Different levels: it's complicated</h3>
                             <img src="../img/HIFF-PKG-vs-seconds-green.png"
                                  alt="zig, kotlin and bun">
@@ -1029,29 +784,14 @@ def process_text_v1(file_path):
                     <!-- Conclusions -->
                     <section>
                     <section
-                        data-background="https://live.staticflickr.com/5/6263677_4e63455a77_o_d.jpg"><h2>Archimedes
-                        was one of the first to create a
-                        precise measuring device: an <em>odometer</em> to
-                        measure distances</h2>
+                        data-background="https://live.staticflickr.com/5/6263677_4e63455a77_o_d.jpg"><h2>Measuring
+                    is important</h2>
                         <h1 class="fragment">Like him, <em>always measure</em>
                             when a change is made</h1>
                         <aside class="notes">The result can be
                             counter-intuitive</aside>
                     </section>
 
-                    <section data-background="https://live.staticflickr.com/65535/53779983939_88e62d2528_k_d.jpg"><h2>Archimedes created catapults with varying range
-                        and size to defeat the Romans</h2>
-                        <h1 class="fragment">Prepare experiments at different
-                            problem sizes</h1>
-                    </section>
-
-                    <section data-background="https://live.staticflickr.com/65535/54191415771_f2c28a7b99_k_d.jpg"><h2>Archimedes managed to keep the Romans at bay
-                        through engineering</h2>
-                        <h1 class="fragment">Good engineering goes a long way
-                            towards saving energy</h1>
-                        <h2 class="fragment">And proving you're better than an
-                        AI</h2>
-                    </section>
 
                     </section>
 
