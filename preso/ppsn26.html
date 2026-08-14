@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en">
+    <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Engineering greener software</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+        <link rel="stylesheet" href="dist/extra.css">
+	<link rel="stylesheet" href="dist/black-green.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+    </head>
+    <body>
+	<div class="reveal">
+	    <div class="slides">
+		<section
+		    data-background="https://live.staticflickr.com/1822/42813527852_6583df0706_k_d.jpg"><h1
+	class="fragment fade-out" data-fragment-index="1">The</h1>
+                    <h1>Art</h1>
+	            <h1 class="fragment fade-out" data-fragment-index="1">of Engineering
+		greener (soft computing) software</h1>
+                    <h2>WCCI'26, Maastricht</h2>
+		    <h3>JJ Merelo, university of Granada, Spain, <code>jmerelo@ugr.es</code></h3>
+                </section>
+
+                <section data-background="https://www.flickr.com/photo_download.gne?id=54754502336&secret=b3feff055f&size=k&source=photoPageEngagement"><h1>Or,
+                    how Dutch art (and history) can help us save energy in our evolutionary algorithms</h1>
+                </section>
+
+                <!-- Pre-pre-intro -->
+                <section
+                    data-background="../img/arnolfini.jpg">
+                    <h2>Greatest Dutch invention</h2>
+                    <h1 class="fragment">🎨 Renaissance!</h1>
+                    <h1 class="fragment">Art is about problem solving via
+                        optimization</h1>
+
+                    <aside class="notes">Actually, it was invented in Bamiyan
+                and used from the XIII century. Still, Dutch painters perfected
+                        drying agents and translucent glazes and achieved a
+                level of detail never seen before.</aside>
+                </section>
+
+                <section>
+                  <section data-background="https://www.flickr.com/photo_download.gne?id=43262467831&secret=937f534266&size=k&source=photoPageEngagement"><h1>Computers need power to operate</h1>
+                      <aside class="notes">Windmills were used in the Netherlands
+                          in the XV century to power drainage systems that clear
+                          farmland or avoid gained land to be washed away. Again, not
+                          invented, but perfected the engineering and made them widely
+                          available. Check out these references: White, Lynn
+                  Jr. (1962). Medieval Technology and Social Change. Oxford
+                  University Press. </aside>
+                  </section>
+
+                  <section><h1>Boy, do they need power...</h1>
+                    <img src="../img/deepseek-hype.png" alt="headlines
+                                      deepseek">
+                    <aside class="notes">They need so much energy that
+                                just the fact that there was a new training system
+                                used in Deepseek sent NVidia shares tumbling
+                                down. See <a
+                            href="https://www.axios.com/2025/01/28/deepseek-ai-model-energy-power-demand">this
+                                news article in Axios.</a>
+                    </aside>
+                  </section>
+
+                  <section><h1>But also...</h1>
+                     <img src="../img/future-se.png" alt="Do we have a future?">
+                     <h2 class="fragment">Engineering: creating software that meets certain standards</h2>
+
+                     <aside class="notes">The (near) future is not in
+                        writing code. It's in arranging the engineering of the
+                                code so that it meets certain standards. And make it on time, on budget. </aside>
+                  </section>
+                  
+                  <section><H1>And one of those standards is energy efficiency</h1>
+                  </section>
+
+               </section>
+
+                    <!-- Preintroduction -->
+
+                    <section>
+                        <section><h1>Moore's law is dead</h1>
+                            <img src="../img/moores-law.png" alt="Moore's law
+                                      and its trends">
+                            <aside class="notes">Clock speed is not improving
+                        any more,
+                        many architectural improvements made performance
+                        increase in the last few years, but we are already in
+                        the diminishing returns territory: lots of architecturar
+                        improvements are needed to extract a tiny bit of
+                                performance improvement. Besides, Moore's said
+                                that power consumption <em>and</em> speed could
+                                be improved simultaneously. That's no longer
+                        true. By the way, there's a connection between both: a
+                        bourgeois middle class needs a new solution to its
+                        spiritual needs, hence Geert Groote and its devotio
+                        moderna. It's not the first time that engineering
+                        changes society changes art, and back
+                            </aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/1881/43540424545_65128b994e_3k_d.jpg"><h1>You can't make applications run much faster</h1>
+                            <h2 class="fragment">Make them greener</h2>
+
+                            <aside class="notes">Or better yet, faster *and* greener.</aside>
+                        </section>
+                        
+                        <section>
+                        <h1>So, why do we need greener (soft computing) software?</h1>
+                        <h2 class="fragment">Better engineering of algorithm implementations</h1>
+                        <h2 class="fragment">Hyperheuristics</h2>
+                        <h2 class="fragment">Let Nature be your guide!</h2>
+                        
+                        <aside class='notes'>That was in a very old paper by Goldberg, Zen and the art of the evolutionary algorithm. </aside>
+                        </section>
+                    </section>
+
+                    <!-- Organization -->
+                    <section data-background="https://live.staticflickr.com/65535/52547418475_4ba8cd07e7_k_d.jpg"><h1>Tutorial organization</h1>
+                        <h2 class="fragment">Energy/power and all that</h2>
+                        <h2 class="fragment">How and where power is spent</h2>
+                        <h2 class="fragment">Measuring energy spent</h2>
+                        <h2 class="fragment">Modeling energy consumption</h2>
+                        <h2 class="fragment">Some hints at improvement</h2>
+                    </section>
+
+                    <!-- Structuring measuring energy -->
+                    <section>
+                        <section data-background="https://live.staticflickr.com/65535/53039395724_6670711912_k_d.jpg"><h1>We need to understand</h1>
+                            <h2 class="fragment">What are we measuring</h2>
+                            <h2 class="fragment">How can we measure it</h2>
+                            <h2 class="fragment">How can we measure <em>our</em> stuff</h2>
+
+                            <aside class="notes">Now that we know what we are
+                                measuring, let's see what we do and how to do it.</aside>
+                        </section>
+                        
+                        <section data-background="http://p9.storage.canalblog.com/99/82/119589/42359657_p.jpg"><h1>Energy = power x time</h1>
+                        <h2 class="fragment">It's what you pay for</h2>
+                        </section>
+
+                    </section>
+
+
+                    <section> <!-- What we measure -->
+
+                        <section data-background="https://live.staticflickr.com/65535/54396266352_ea1c80d428_k_d.jpg"><h1>What are we measuring</h1>
+                            <h1 class="fragment">Socket ~= Processor → z <em>chiplets</em> → x cores →
+                                y threads</h1>
+                            <h2 class="fragment">DRAM/Memory</h2>
+                            <h3 class="fragment">GPUs</h3>
+                            <h3 class="fragment">Other units: Apple Neural Engine
+                            Architecture, for instance.</h3>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/4326/36244226556_7d53e15634_k_d.jpg"><h1>Cores/chiplets are not homogeneous</h1>
+                            <h1 class="fragment"><em>P</em> cores for
+                                performance, <em>E</em> cores for
+                                (energy) efficiency</h1>
+
+                            <h1 class="fragment">Multi-die architecture</h1>
+                            <h2 class="fragment">Sometimes with heterogeneous frequency/voltage</h2>
+
+                            <aside class="notes">Intel <a
+                        href="https://www.reddit.com/r/buildapc/comments/1azdfyn/does_intels_p_and_ecore_architecture_actually/">has
+                                the same kind of architecture, but for different
+                                purposes.</a>. There's some explanation on this
+                                <a
+                                    href="https://www.pcgamer.com/hardware/processors/intels-arrow-lake-chips-arent-winning-any-awards-for-gaming-performance-but-i-think-its-new-e-cores-deserve-a-gold-star/">On
+                                    these articles.</a>. E-cores generally
+                                occupy less space, and their clock speed is slower;
+                                these two things together make them consume less
+                                energy. In many cases, they are older architectures
+                                (several generations before) repackaged. In
+                                general, modern architectures are designed for peak
+                                performance, but also energy management. Apple Silicon M3 Ultra: 28
+                                    p-cores, 8 e-cores.
+                            </aside>
+                        </section>
+
+                        <section
+                            data-background="https://www.flickr.com/photo_download.gne?id=54749497087&secret=fb4c23dbcb&size=k&source=photoPageEngagement"><h1
+                            class="fragment">System
+                            does its best to keep processor temperature in a range</h1>
+                            <h2 class="fragment">Different states change frequency and
+                                voltage</h2>
+                            <h1 class="fragment">Baseline: the operating context changes all the time</h1>
+                            <aside class="notes">Still lifes are all about
+                            state: different elements are in different states of
+                            ripeness, of, well, life, and movement. The problem
+                                they need to solve is essentially about that</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/7565/28018882793_fbc6def141_k_d.jpg"><h1>We need our applications to ride this
+                            system</h1>
+                            <h2 class="fragment">And extract as little power
+                                from it as possible</h2>
+                        </section>
+                        <section
+                            data-background="https://live.staticflickr.com/2849/34018162542_8468e4540c_k_d.jpg"><h1>Good (green)
+                            engineering can help</h1>
+                            <h2 class='fragment'>Working <em>with</em> it, not against it</h2>
+                            <h2 class='fragment'>Because that is how applications will eventually run</h2>
+                            
+                            <aside class='notes'>Any algorithm implementation is going to run in a real system, with other applications and services running at the same time, maybe even an LLM running in the background. The operating context with vary with your implementation and that activity, so you need to understand this "real life" system to make your application greener</aside>
+                        </section>
+                    </section>
+
+                    <!-- How can we measure it - Intro -->
+                    <section>
+                        <section data-background="https://live.staticflickr.com/65535/54139459549_29d8f61a60_k_d.jpg"><h1>You can't isolate the energy <em>your</em> application is spending</h1>
+                            <h2 class="fragment">You can <em>mostly</em> measure
+                                the whole system</h2>
+                            <h3 class="fragment">Yet you need to measure a
+                                single application</h3>
+                            <aside class="notes">It's theoretically possible
+                    to collect the power spectrum of a whole system and
+                    individuate single instructions, but it's a complicated
+                                technique used mainly for espionage. Some tools use also a technique that estimates the consumption of individual instructions. Again, complicated technique.</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/1867/29430941267_c9fcfcc9bb_o_d.jpg"><h1>Use system APIs and interfaces</h1>
+                            <h2 class="fragment">Using seudo-registers or system
+                                calls to place <em>estimates</em></h2>
+                            <h2 class="fragment">IOreport for Apple</h2>
+                            <h2 class="fragment">Other devices have different interfaces</h2>
+                            <aside class="notes">In general, we are going to
+                            have some library that we can tap from to get
+                                informed about how every subsystem spends
+                                energy</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/65535/54401153729_e3a038195f_o_d.jpg"><h1>Running average power limit:
+                            <em>RAPL</em></h1>
+                            <h2 class="fragment">Prevalent in the Intel
+                                world (including AMD)</h2>
+
+                            <aside class="notes">It's basically the standard in
+                                x86 platforms</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/1638/25036393132_287b1e490d_o_d.jpg"><h1>Provides <em>registers</em> that estimate
+                            energy usage</h1>
+                            <h2 class="fragment"><code>PKG</code> or "package",
+                                includes all on-chip energy consumption</h2>
+                            <h2 class="fragment">Intel chipsets have more
+                                granularity: memory, core/PP0, uncore/PP1,
+                                "PSys"...</h2>
+
+                            <aside class="notes"><a
+                        href="https://hubblo-org.github.io/scaphandre-documentation/explanations/rapl-domains.html">This
+                              article</a> provides an explanation for the
+                                different parts. Nobody really knows what is
+                        PSys, really, except that it seems to be a bit above
+                        PKG. PKG is simply the total of core, uncore and a bit
+                        else. Also, we will generally work with energy, although
+                        some APIs measure power.
+                            </aside>
+                        </section>
+                    </section>
+
+                    <!-- Using power measuring interfaces and tools -->
+                    <section>
+                        <section>
+                            <h1>Measuring energy consumed by an application</h1>
+                            <h2 class="fragment">Command line tools</h2>
+                            <h2 class="fragment">Language-specific
+                                libraries</h2>
+
+                            <aside class="notes">Or rather, while an application is running. Additionally, some tools like
+                        browsers can have specific energy-measuring APIs. but
+                        these are the two broad categories... At any rate, these
+                        will tap the known energy-measuring low-level APIs, they
+                                are not inventing anything out of thin air</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/65535/52549465925_b0412b358c_k_d.jpg"><h1>Let's check the marketplace</h1>
+                            <table><tr><th>Command</th><th>Platforms</th><th>Attaches
+                                to command</th></tr>
+
+                                <tr class="fragment fade-in"
+                                    data-fragment-index="4"><td><span class="fragment highlight-blue" data-fragment-index="4"> <code>scaphandre</code></span></td><td>RAPL, others</td><td>Sometimes</td>
+                                </tr>
+
+                                <tr class="fragment fade-in"
+                                    data-fragment-index="3"><td><span class="fragment highlight-blue" data-fragment-index="4"> <code>pinpoint</code></span></td><td>RAPL,
+                                    IOReport for M1/M2, others</td><td>Yes</td>
+                                </tr>
+
+                                <tr class="fragment fade-in" data-fragment-index="2"><td><code>perf</code></td><td>Linux</td><td>No</td></tr>
+                                <tr class="fragment fade-in"
+                                    data-fragment-index="1"><td><code>pumas</code></td><td>Mac</td><td>No</td></tr>
+
+                            </table>
+
+                            <aside class="notes">Those are the two things
+                                that you need: there should be an uniform way of
+                                measuring consumption in different environments, and
+                                you should be able to run the command that contains
+                                your workload, what you're insterested in. If it's
+                                not run with your command, but in the background
+                                (and can be started or killed, or simply kinda find
+                                what was happenning when your command was running)
+                                you need a certain amount of instrumentation to get
+                                it going.So pinpoint it is. Scaphandre attaches
+                                depending on the data output: it does for
+                                stdout, does not for others.</aside>
+
+                        </section>
+
+
+                        <section
+                            data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Isack_van_Ostade_-_River_Landscape_with_Swimmers_-_68.296_-_Detroit_Institute_of_Arts.jpg/960px-Isack_van_Ostade_-_River_Landscape_with_Swimmers_-_68.296_-_Detroit_Institute_of_Arts.jpg?_=20190614235651">
+                            <h1>🤿 <code>scaphandre</code> for process-level power
+                                meter</h1>
+                            <pre><code>sudo julia  examples/BBOB_sphere_with_baseline.jl 40 10000 50 10 256 &
+sudo time scaphandre stdout -s 1 -p 10</code></pre>
+                                <img src="../img/scaphandre-test.png" alt="Examining
+                                          process-level consumption">
+                            <aside class="notes">Here we are seeing for the first time
+                                this algorithm, Brave New Algorithm, which we are
+                                going to see many times later on. This needed a
+                                certain amount of scaffolding to process time (using
+                                the system command) and extract power for our
+                                specific process, and then plot it using $. What we
+                                see is that even with the same process we have a
+                                certain amount of dispersion, due to several
+                                factors, including the fact that it's a
+                                metaheuristic, so it might have more or less
+                                running time.
+
+                                Some issues with scaphandre: sampling time, the fact
+                                that you have to estimate sub-sampling energy
+                                consumption, and so on. You need to trust also the
+                                measures, which include a certain amount of
+                                assumptions. While this is possible the true
+                                consumption, you still need to take into account the
+                                fact that your process is going to be running while the
+                                rest of the machine does.</aside>
+                        </section>
+
+                        <section><h1>Using pyJoules</h1>
+                            <pre><code data-line-numbers="2|5-7">import sys
+from pyJoules.energy_meter import measure_energy
+from sacrypt import process_text_v0
+
+@measure_energy
+def run_process(process_func, file_path):
+    process_func(file_path)
+
+if __name__ == "__main__":
+    run_process(process_text_v0, file_path)
+</pre></code>
+
+                            <aside class="notes">Let's start with measuring
+                        using a library; main issue is that it's not general,
+                        and that you need to weed out which one is the best for
+                        you. There are others like codecarbon, that are more
+                        complicated because they insist in needing configuration
+                        and using national APIs to compute prices and carbon
+                        intensity; pyRAPL is quite raw and requests unnecesary
+                        libraries. This one is good enough, and works well
+                                enough pretty much out of the box</aside>
+                        </section>
+
+                        <section><h1><code>sudo</code> make me a sandwich</h1>
+                            <pre><code data-line-numbers="1|1-2">$ sudo ./.venv/bin/python bin/sacrypt-energy.py ../data/3romanzi.txt v1
+begin timestamp : 1742670844.3934789; tag : run_process; duration : 0.08716917037963867; package_0 : 3239548.0; core_0 : 55554.0; nvidia_gpu_0 : 1150</code></pre>
+                            <aside class="notes">Since energy profiles can
+                            reveal a lot about specific things that are being
+                            done in the system, it's been converted into a
+                                privileged API, which needs <code>sudo</code> to run.</aside>
+                        </section>
+
+                        <section
+                    data-background="https://live.staticflickr.com/65535/51977547906_e99fc78d5c_k_d.jpg"><h1>We
+                    need a methodology</h1>
+                            <h2 class="fragment">Use different parameters</h2>
+                            <h2 class="fragment">Repeat for statistical
+                                significance</h2>
+
+                            <aside class="notes">Aristotle was the first
+                        philosopher who understood that observation was more
+                        important than just reason to draw conclusions on
+                        reality. And if Aristotle was never in Sicily, the
+                        Normal school of translators, influenced by the previous
+                        Arab school of translators who had translated Greek
+                        texts into Arab, was key in delivering Aristotelian
+                                philosophy to the world.</aside>
+                        </section>
+
+                        <section><h1>Analyzing Italian literature</h1>
+                            <img src="../img/libri.png" alt="Books used in
+                                      training">
+
+                            <aside class="notes">The one in the middle is
+                                actually used only in combination with the other
+                                two</aside>
+                        </section>
+
+                        <section>
+                            <img src="../img/time-vs-pkg-amd-libri.png"
+                                 alt="Computing time and PKG for 3 books">
+
+                            <aside class="notes">We need a script (written in
+                        this case in Perl) which captures the output of
+                        pyJoules, processes it, and puts in in a format; then we
+                        use R to plot the result. We are plotting the PKG here,
+                        that is, what is consumed by the system-on-chip, which
+                                is normally the most important part of energy
+                        consumption. What we see is that, for every file, there
+                        is roughly a proportion between time and energy spent;
+                        however, this proportion is different for every one,
+                        indicating that the way energy is tapped is
+                        different. Also, there's a certain, mostly horizontal,
+                        spread (that is, you can consume a range of energy even
+                        spending the same time). Spread can be 1-2 joules in
+                                some cases, around 10% of the total measure.
+What we see here is that there's pretty much a linear increase between the size
+                        of the file, time needed to process it and energy
+                        spent. All's good and well, unless you need to process
+                        terabytes of code... Also take into account that we're
+                        measuring 30 times. Energy management in modern
+                        computers makes relatively unpredictable the outcome, so
+                        statistics are sorely needed.
+                            </aside>
+                        </section>
+
+                        <section><img src="../img/mb-per-joule-amd-libri.png"
+                                      alt="MB per J">
+                            <aside class="notes">The number of MBs per J shows a
+                                      slightly different scenario, and one that
+                                      you will find with relative frequency:
+                                      change with size is not
+                                      uniform. malavoglia is the smallest, has a
+                                      medium level of energy expense; then goes
+                                      I Promessi Spossi, which is lower (and
+                                      with higher variability, then these
+                                      together with another one... Issue is, you
+                                need to measure always.
+                            </aside>
+                        </section>
+
+                        <section><h1>Or BBOB functions</h1>
+                            <img src="../img/energy-bbob-fixed-size-128.png"
+                                 alt="Paper del GECCO">
+
+                            <aside class="notes">Comparing here a couple of
+                                different data structures, paper published already</aside>
+                        </section>
+                    </section>
+
+
+                    <section>
+                        <section data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/DublinVermeer.jpg/960px-DublinVermeer.jpg">
+                            <h1>One does not just measure</h1>
+
+                            <h2 class="fragment">Experimental design is
+                                    needed</h2>
+
+                            <aside class="notes">The same way that
+                            Vermeer didn't just "paint". He used a "camera
+                            obscura" so that he could project a scene on a
+                                    surface and paint over it</aside>
+                        </section>
+
+                        <section data-background="https://live.staticflickr.com/65535/53224993643_172493ae86_k_d.jpg">
+                            <h2>But we're measuring <em>the whole system</em> here</h2>
+                            <h1 class="fragment">A baseline that eliminates
+                                system overhead is needed</h1>
+                            <h2 class="fragment">We can't do that <em>from the
+                                program itself</em></h2>
+
+                        </section>
+
+                        <section
+                            data-background="https://live.staticflickr.com/65535/51821342970_3278590473_k_d.jpg">
+                            <h2 class="fragment">E(measured) = E(workload) +  E(framework) + E(system)</h2>
+
+                            <h1 class="fragment">System, or framework, or both need to be isolated</h1>
+
+                            <aside class="notes">This is strictly true, although
+                                the reality is a bit more complicated</aside>
+                        </section>
+
+                        <section data-background="../img/fall-of-icarus.jpg">
+                            <h1>Measuring <em>only</em> energy spent by our
+                                workload</h1>
+
+                            <h2 class="fragment">E(Workload) = E(measured) -
+                                E(baseline)</h2>
+
+                            <h3 class="fragment">Baseline includes operating context +
+                                runtime overhead</h3>
+
+                            <aside class="notes">In principle, we can only measure the
+                        energy of the whole system while our program is running,
+                        this is why we need to do this</aside>
+                        </section>
+
+
+                        <section data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Johannes_Vermeer_-_The_Geographer_-_Google_Art_Project.jpg/960px-Johannes_Vermeer_-_The_Geographer_-_Google_Art_Project.jpg"><h1>Establish a baseline</h1>
+                            <pre><code>$ sudo pinpoint sleep 1
+Energy counter stats for 'sleep 1':
+[interval: 50ms, before: 0ms, after: 0ms, delay: 0ms, runs: 1]
+
+	10.64 J nvml:nvidia_geforce_rtx_4070_super_0
+	22.17 J rapl:pkg
+
+	1.00109098 seconds time elapsed </pre></code>
+                        <aside class="notes">We need to repeat this a number of
+                            times until we get a good measurement and for a
+                        number of different "sleep" values.</aside>
+                        </section>
+
+                        <section>
+                            <img src="../img/time-vs-pkg-sleep.png" alt="base
+                            energy expenses">
+                            <aside class="notes">With this, we know how many
+                                joules per second the system spends: we can
+                                subtract them from our measurements. We use a
+                            linear model to establish the slope, which will be
+                            the joules spent per second. Take into account that
+                            this is wallclock time.</aside>
+                        </section>
+
+                        <section><h1>Looking again at Italian literature</h1>
+                            <img src="../img/boxplot-delta-pkg-amd-libri.png"
+                                 alt="real energy spent" style="height:900px">
+                            <h3 class="fragment">But it's a bumpy road...</h3>
+
+                            <aside class="notes">What we are doing here is
+                    multiplying the amount of J the system spends in the actual
+                    time this is running, and subtracting it from the measured
+                    amount. This would be the result. We can see with a bit more
+                    precision how much energy is actually spent in every one of
+                            the three files, and how it's distributed. The
+                    bigger, the bigger possibility there's an outlier, but we
+                    can also see that it's not a normal distribution, so we can
+                    only use statistics to establish some measurement. Then we
+                    observe some stuff here: weird distributions, for
+                    instance. What's the issue?</aside>
+                        </section>
+
+                        <section><h1>Very high variability</h1>
+                            <h2 class="fragment" data-fragment-index="1">Operating context matters</h2>
+                            <img class="fragment" data-fragment-index="1"
+                                 src="../img/baseline-measurements.png" alt="Baseline
+                                        measurements"  style="height:800px">
+                            <h3  class="fragment" data-fragment-index="1">Taken from <a href="https://jj.github.io/brave-new-green-algorithm/ola-26-explainer.html">Best practices in measuring energy consumption in population-based metaheuristics</a></h3>
+                        </section>
+
+                        <section><h1>Interleave workload-baseline measurements</h1>
+                            <img src="../img/interleaved-baseline-variability.png" alt="Interleaved  measurements">
+                            <aside class="notes">In this plot of a single experiment block we see, besides high variability, how baseline (red) and workload (blue) follow more or less the same patterns. This way both track operating conditions, and we avoid having workload measurements that totally differ from the corresponding baseline ones</aside>
+                        </section>
+
+                        <section data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Possibly_Peter_Paul_Rubens_002.jpg/960px-Possibly_Peter_Paul_Rubens_002.jpg">
+                            <h1>Still high variability? Repeat for statistical
+                                significance</h1>
+                            <h2 class="fragment">Also for changes in operating context</h2>
+
+                                <aside class="notes">This also ensures that we find different operating conditions, so that we can separate signal, our measurements, from this statistical noise</aside>
+                        </section>
+
+                        <section data-background="https://www.essentialvermeer.com/dutch-painters/netherlands/netherlands-images/solomon-van-ruisdael-river.jpg">
+                            <h1>But the experiment itself changes operating
+                                conditions</h1>
+                            <h1 class="fragment">Baseline <em>sandwich</em> ⇒ a
+                                workload between 2 baseline runs</h1>
+                            <h2 class="fragment">E(Workload) = E(measured) -
+                                (E(baseline-before)-E(baseline-after))/2</h2>
+
+                            <aside class="notes">The ships that go first create
+                        waves that will alter the speed of those that arrive
+                        later. Any program will change the temperature of the
+                        processor so that the operating conditions for the next
+                        experiment will change. If we only use the one before,
+                                we might be missing part of the context</aside>
+                        </section>
+
+                        <section><h1>Are we there yet?</h1>
+                            <img src="../img/tutorial-uncertainty.png"
+                                 alt="uncertainty" style="height:800px">
+                        </section>
+
+                        <section data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Johannes_Vermeer_-_The_Geographer_-_Google_Art_Project.jpg/960px-Johannes_Vermeer_-_The_Geographer_-_Google_Art_Project.jpg"><h2>How do we know that?</h2>
+                            <h1 class="fragment">Because we have a model</h1>
+                        </section>
+                             
+                    </section>
+
+                    <!-- Now let's model the result -->
+
+                    <section>
+                        <section><h2>How does energy consumption change?</h2>
+                        <img src="../img/tutorial-cloud-points.png" alt="Point
+                        cloud for the 5 repetitions" style="height:800px">
+                        <aside class="notes">As a matter of fact, this is for
+                    the paper I'm presenting this Thursday. The main point here,
+                        or the main many points, is that energy consumption
+                            mainly depends on time. We would expect the dots to
+                        be well ordenated depending on problem size and so on,
+                        but that's clearly not the case.</aside>
+                        </section>
+
+                        <section><h1>We are interested in modelling the effects
+                            of <em>our</em> parameters</h1>
+                            <h2 class="fragment">Two-stage statistical
+                                modelling</h2>
+                            <h2 class="fragment">First: Model time as a
+                                function of problem configuration</h2>
+                            <h2 class="fragment">Second: Model energy (PKG) as a
+                                function of <em>residual</em> time and problem
+                                parameters</h2>
+                        </section>
+
+                         <section><h2>We have an (interesting) model</h2>
+                             <img src="../img/tutorial-model.png" alt="model for the 5 repetitions" style="height:800px">
+                         </section>
+
+                         <section
+                         data-background="https://collections.rmg.co.uk/media/380/927/bhc1897.jpg"><h1>Are
+                             we there yet?</h1>
+                             <h2 class="fragment">We understand well enough how
+                                 energy consumption changes</h2>
+                             <h2 class="fragment">And how much</h2>
+                             <h1 class="fragment">To make some decisions</h1>
+                         </section>
+                         <section
+                             data-background="../img/still-life-with-timepiece.jpg">
+                             <h1>Digging for data</h1>
+                         </section>
+
+                         <section
+                             data-background="../img/still-life-with-timepiece-zoom.jpg">
+                             <h1>Until we find it</h1>
+                         </section>
+
+                         <section><h1>There are two dimensions in running
+                             time</h1>
+                             <h2 class="fragment">Variability or noise:
+                                 operating context</h2>
+                             <h2 class="fragment">Raw performance</h2>
+                         </section>
+
+                         <section><h1>First level of approximation</h1>
+                             <h2 class="fragment">Want to spend less
+                                 energy?</h2>
+                             <h1 class="fragment">Make your algorithm run
+                                 faster!</h1>
+                         </section>
+                    </section>
+
+
+                    <!-- Levels of improvement -->
+                    <section>
+                        <section><h1>Choices for greener algorithms: many moving parts</h1>
+                            <img
+                                src="../img/nouen-clock.jpg"
+                                alt="Nouen Watch from the early 16th century, Dutch watchmaker from the same city as Bosch">
+                            <h2 class="fragment">Machine/OS/Hardware
+                                platform</h2>
+                            <h2 class="fragment">Language</h2>
+                            <h2 class="fragment">Language-specific
+                                optimizations</h2>
+
+                            <aside class="notes">That's the long and short of
+                        it, but the take away here is that you need to think
+                                about the leverage you have before the whole
+                        enterprise. The image is the antikythera front panel,
+                        showing many moving parts (most of which scientists
+                        don't know what to make with, BTW).</aside>
+                        </section>
+
+                        <section><h1>Some rules of thumb for energy savings</h1>
+                            <h2 class="fragment">Hardware: several orders of
+                                magnitude</h2>
+                            <h2 class="fragment">Language 2-3 orders of
+                                magnitude</h2>
+                            <h2 class="fragment">Program: 1 order of magnitude</h2>
+                        </section>
+
+                        <section
+                            data-background="https://live.staticflickr.com/65535/51381422791_e01d052406_k_d.jpg"><h1>Trade-off
+                            energy/time</h1>
+                            <h2 class="fragment">At the hardware/language level,
+                                at least</h2>
+                            <h2 class="fragment">There's no free lunch, but we
+                                can have very cheap lunch at the program
+                                level</h2>
+                        </section>
+
+                    </section>
+
+                    <!-- Changing language platform or compiler or language -->
+                    <section>
+
+                      <section data-background="https://live.staticflickr.com/65535/48610436077_732ce83d23_k_d.jpg"><h1>Can we beat Python</h1>
+                            <h2 class="fragment">JavaScript is a very popular
+                                language</h2>
+                            <h2 class="fragment"><code>% Copilot rewrite this in
+                    node.js</code></h2>
+                        </section>
+
+                        <section><h2>Leaving Python in the dust</h2>
+                            <img src="../img/node_vs_python_pkg_seconds.png"
+                                 alt="Python vs. node"
+                            >
+                            <aside class="notes">It's much faster, scales
+                                better, does everything better... Without
+                                tweaking</aside>
+                        </section>
+
+                        <section><h3>What about different interpreters for
+                            JavaScript? node vs. bun</h3>
+                            <img src="../img/node_vs_bun_pkg.png" alt="node
+                                      vs. bun">
+                            <aside class="notes">bun is written in zig, and it's
+                            one of the major "killer apps" of this relatively
+                                new language. There's yet another version of
+                            javascript, called deno, and Microsoft just produced
+                            a new one. Next, let's go for low-level languages.</aside>
+                        </section>
+
+                        <section><h3>Different levels: it's complicated</h3>
+                            <img src="../img/HIFF-PKG-vs-seconds-green.png"
+                                 alt="zig, kotlin and bun">
+                            <aside class="notes">Here you can see that the
+                            relationship between zig (compiled using LLVM) and
+                            Kotlin (which works on the JVM) is complicated:
+                            Kotlin is slower, but consumes less energy; in this
+                                case working with the HIFF function for
+                                different "chromosome" sizes. You can also see
+                            that dispersion of the values go in different
+                            directions: zig is more dispersed on the energy
+                            side, kotlin on the time side.</aside>
+                        </section>
+                    </section>
+
+
+                    <!-- Conclusions -->
+                    <section>
+                        <section
+                            data-background="https://upload.wikimedia.org/wikipedia/commons/0/0a/Wenceslas_Hollar_-_A_Flute_%28State_2%29_%28cropped%29.jpg"><h2>Measuring
+                            is important</h2>
+                            <h2 class="fragment">Repeat for statistical
+                                certainty</h2>
+                            <h1 class="fragment">Saving time is saving
+                                energy</h1>
+
+                            <aside class="notes">This is a <em>fluyt</em>,
+                    flute-ship that was designed for speed, leveraging the power
+                    of sails to the top. By understanding better how the
+                    operating context consumes energy, we can change
+                    configurations to make everything go faster and then comsume
+                    less energy, up to a few orders of magnitude. But remember,
+                                always measure</aside>
+                        </section>
+
+
+                        <section><h1>Future work</h1>
+                            <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Fahrenheit_small.jpg/250px-Fahrenheit_small.jpg"
+                            alt="Fahrenheit with his thermometer">
+                            <h1 class="fragment">Temperature is also
+                                important!</h1>
+
+                            <aside class="notes">Fahrenheit was, for some
+                    reason, under tutorship of the Dutch East India company when
+                    he created the first mercury thermometer and the scale with
+                                his name in the 18th century</aside>
+                        </section>
+
+                    <section
+                        data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Aert_van_der_Neer_-_Riviergezicht_bij_maanlicht_-_Google_Art_Project.jpg/1920px-Aert_van_der_Neer_-_Riviergezicht_bij_maanlicht_-_Google_Art_Project.jpg">
+                        <h1 class="fragment"><img
+                                style="height:1em;vertical-align:middle; margin 0 0.25em"
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Flag_of_Limburg_%28Netherlands%29.svg/1920px-Flag_of_Limburg_%28Netherlands%29.svg.png" 
+                                alt="Flag of Limburg"> Merci! Nog vraoge?</h1>
+                        <h1 class="fragment"> Thanks you very much!
+                            Questions?</h1>
+                        <h1 class="fragment">🇳🇱 Hartelijk dank. Zijn er nog
+                            vragen?</h1>
+
+                        <aside class="fragment">Dutch also invented landscape,
+                            and aert van der Neer was one of the specialists</aside>
+                    </section>
+                    </section>
+
+                   
+
+		</div>
+	    </div>
+
+	    <script src="dist/reveal.js"></script>
+	    <script src="plugin/notes/notes.js"></script>
+	    <script src="plugin/highlight/highlight.js"></script>
+	    <script>
+	     Reveal.initialize({
+		 hash: true,
+                 width: "95%",
+		 height: '100%',
+		 controls: true,
+		 progress: true,
+		 backgroundTransition: 'convex',
+		 plugins: [ RevealHighlight, RevealNotes ]
+	     });
+	    </script>
+	</body>
+</html>
