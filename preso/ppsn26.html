@@ -23,7 +23,7 @@
                     <h1>Art</h1>
 	            <h1 class="fragment fade-out" data-fragment-index="1">of Engineering
 		greener evolutionary algorithms</h1>
-                    <h2>PPSN'26, Trento, Italy</h2>
+                    <h2>PPSN'26, Trento, Italy: <a href="https://jj.github.io/cemed-green-software/preso/ppsn26.html"><code>https://jj.github.io/cemed-green-software/preso/ppsn26.html</code></a> </h2>
 		    <h3>JJ Merelo, university of Granada, Spain, <code>jmerelo@ugr.es</code></h3>
                 </section>
 
@@ -111,7 +111,7 @@
                   something uniquely human.</aside>
                   </section>
 
-                  <section>
+                  <section data-background="https://upload.wikimedia.org/wikipedia/commons/a/a8/Veronese_Villa_Barbaro.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original">
                     <h1>So, why do we need greener evolutionary algorithms and software?</h1>
                     <h2 class="fragment">Better engineering of algorithm implementations</h1>
 <h2 class="fragment">Hyperheuristics</h2>
@@ -614,7 +614,7 @@ Energy counter stats for 'sleep 1':
                         <section data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Johannes_Vermeer_-_The_Geographer_-_Google_Art_Project.jpg/960px-Johannes_Vermeer_-_The_Geographer_-_Google_Art_Project.jpg"><h2>How do we know that?</h2>
                             <h1 class="fragment">Because we have a model</h1>
                         </section>
-                             
+
                     </section>
 
                     <!-- Now let's model the result -->
@@ -622,8 +622,12 @@ Energy counter stats for 'sleep 1':
                     <section>
                         <section><h2>How does energy consumption change?</h2>
                         <img src="../img/tutorial-cloud-points.png" alt="Point
-                        cloud for the 5 repetitions" style="height:800px">
-                        <aside class="notes">As a matter of fact, this is for
+                                  cloud for the 5 repetitions" style="height:800px">
+
+                        <h2>Paper <a
+                            href="https://jj.github.io/brave-new-green-algorithm/cec-2026-explainer.html">presented
+                            at CEC</a></h2>
+                            <aside class="notes">As a matter of fact, this is for
                     the paper I'm presenting this Thursday. The main point here,
                         or the main many points, is that energy consumption
                             mainly depends on time. We would expect the dots to
@@ -632,8 +636,11 @@ Energy counter stats for 'sleep 1':
                         </section>
 
                         <section><h1>We are interested in modelling the effects
-                            of <em>our</em> parameters</h1>
-                            <h2 class="fragment">Two-stage statistical
+                            of <em>our</em> algorithm parameters</h1>
+                            <h2 class="fragment">Operating conditions:
+                                frequency/power → running time + temperature</h2>
+
+                            <h2 class="fragment"> Two-stage statistical
                                 modelling</h2>
                             <h2 class="fragment">First: Model time as a
                                 function of problem configuration</h2>
@@ -643,7 +650,11 @@ Energy counter stats for 'sleep 1':
                         </section>
 
                          <section><h2>We have an (interesting) model</h2>
-                             <img src="../img/tutorial-model.png" alt="model for the 5 repetitions" style="height:800px">
+                             <img src="../img/tutorial-model.png" alt="model for
+                                       the 5 repetitions" style="height:800px">
+                             <aside class="notes">It's interesting because it's
+                             not linear: the longer the time, the smaller the
+                                 influence on energy consumption</aside>
                          </section>
 
                          <section
