@@ -174,4 +174,22 @@ img.flat.smallflat {
     max-width: 50%;
 }
 
+.reveal .slide-number {
+    font-size: 22px;
+    padding: 8px 12px;
+    color: #1f1;
+    background-color: rgba(0,0,0,0.7);
+    border: 1px solid #1f1;
+    border-radius: 6px;
+    top: var(--r-controls-spacing, 12px);
+    bottom: auto;
+    right: var(--r-controls-spacing, 12px);
+    left: auto;
+}
+
+.reveal .progress {
+    height: 10px;
+    box-shadow: 0 0 8px 1px var(--r-link-color, #42fffa);
+}
+
 
