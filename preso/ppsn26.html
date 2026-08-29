@@ -548,7 +548,7 @@ Energy counter stats for 'sleep 1':
                             this is wallclock time.</aside>
                         </section>
 
-                        <section><h1>Looking again at Italian literature</h1>
+                        <!-- section><h1>Looking again at Italian literature</h1>
                             <img src="../img/boxplot-delta-pkg-amd-libri.png"
                                  alt="real energy spent" style="height:900px">
                             <h3 class="fragment">But it's a bumpy road...</h3>
@@ -564,7 +564,7 @@ Energy counter stats for 'sleep 1':
                     only use statistics to establish some measurement. Then we
                     observe some stuff here: weird distributions, for
                     instance. What's the issue?</aside>
-                        </section>
+                        </section-->
 
                         <section><h1>Very high variability</h1>
                             <h2 class="fragment" data-fragment-index="1">Operating context matters</h2>
@@ -615,10 +615,6 @@ Energy counter stats for 'sleep 1':
                         <section><h1>Are we there yet?</h1>
                             <img src="../img/tutorial-uncertainty.png"
                                  alt="uncertainty" style="height:800px">
-                        </section>
-
-                        <section data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Johannes_Vermeer_-_The_Geographer_-_Google_Art_Project.jpg/960px-Johannes_Vermeer_-_The_Geographer_-_Google_Art_Project.jpg"><h2>How do we know that?</h2>
-                            <h1 class="fragment">Because we have a model</h1>
                         </section>
 
                     </section>
@@ -719,17 +715,14 @@ Energy counter stats for 'sleep 1':
                          which is why we need to help boost the signal; this is
                                  still a work in progress.</aside>
                          </section>
-                    </section>
-
-
-                    <section> <!-- Some hints at improvemet: Levels of improvement -->
+                     <!-- Some hints at improvemet: Levels of improvement -->
                         <section data-background="https://media.mart.tn.it/media/howbcy1g/3-paperina_the_last_judgment.jpg"><h1>Choices for greener algorithms: many moving parts</h1>
                             <h2 class="fragment">Machine/OS/Hardware
-                                platform</h2>
-                            <h2 class="fragment">Language</h2>
+                                platform: several orders of magnitude</h2>
+                            <h2 class="fragment">Language: 2-3 orders</h2>
                             <h2 class="fragment">Language-specific
-                                optimizations</h2>
-
+                                optimizations: 1- Order of magnitude</h2>
+                            <h3 class='fragment'>Algorithm parameters: a few percentage points</h3>
                             <aside class="notes">Art by Laurina Paperina, a local artist born in Rovereto, close to Trento. That's the long and short of
                         it, but the take away here is that you need to think
                                 about the leverage you have before the whole
@@ -738,71 +731,13 @@ Energy counter stats for 'sleep 1':
                         don't know what to make with, BTW).</aside>
                         </section>
 
-                        <section><h1>Some rules of thumb for energy savings</h1>
-                            <h2 class="fragment">Hardware: several orders of
-                                magnitude</h2>
-                            <h2 class="fragment">Language 2-3 orders of
-                                magnitude</h2>
-                            <h2 class="fragment">Program: 1 order of magnitude</h2>
-                        </section>
-
-                        <section><h1>Specific-purpose hardware ⇒ Rather
-                            expensive lunch</h1>
-                            <img src="../img/jalapeno.png" alt="Benchmarks for OpenAI's Jalapeño, just this week">
-                        </section>
-
-                        <section
-                            data-background="https://live.staticflickr.com/65535/51381422791_e01d052406_k_d.jpg"><h1>Trade-off
-                            energy/time</h1>
-                            <h2 class="fragment">At the hardware/language level,
-                                at least</h2>
-                            <h2 class="fragment">There's no free lunch, but we
-                                can have very cheap lunch at the program
-                                level</h2>
-                        </section>
-
-                    </section>
-
-                    <section> <!-- Hints at improvement: Changing language platform or compiler or language -->
-
-                      <section data-background="https://live.staticflickr.com/65535/48610436077_732ce83d23_k_d.jpg"><h1>Can we beat Python</h1>
-                            <h2 class="fragment">JavaScript is a very popular
-                                language</h2>
-                            <h2 class="fragment"><code>% Copilot rewrite this in
-                    node.js</code></h2>
-                        </section>
-
-                        <section><h2>Leaving Python in the dust</h2>
+    <section><h2>Leaving Python in the dust</h2>
                             <img src="../img/node_vs_python_pkg_seconds.png"
                                  alt="Python vs. node"
                             >
                             <aside class="notes">It's much faster, scales
                                 better, does everything better... Without
                                 tweaking</aside>
-                        </section>
-
-                        <section><h3>What about different interpreters for
-                            JavaScript? node vs. bun</h3>
-                            <img src="../img/node_vs_bun_pkg.png" alt="node
-                                      vs. bun">
-                            <aside class="notes">bun was written in zig, now
-                            it's written in Rust. There's yet another version of
-                            javascript, called deno, and Microsoft just produced
-                            a new one. Next, let's go for low-level languages.</aside>
-                        </section>
-
-                        <section><h3>Different levels: it's complicated</h3>
-                            <img src="../img/HIFF-PKG-vs-seconds-green.png"
-                                 alt="zig, kotlin and bun">
-                            <aside class="notes">Here you can see that the
-                            relationship between zig (compiled using LLVM) and
-                            Kotlin (which works on the JVM) is complicated:
-                            Kotlin is slower, but consumes less energy; in this
-                                case working with the HIFF function for
-                                different "chromosome" sizes. You can also see
-                            that dispersion of the values go in different
-                            directions: zig is more dispersed on the energy
-                            side, kotlin on the time side.</aside>
                         </section>
 
                         <section><h1>Additional tips</h1>
@@ -838,17 +773,6 @@ Energy counter stats for 'sleep 1':
                             operator percentage, different implementations of
                             the fitness function, for instance, have on the
                                 overall performance</aside>
-                        </section>
-
-                        <section><h1>Memetic/DNN/LMM assisted operations</h1>
-                            <h2 class="fragment">Massive energy consumers ⇒
-                                maximize impact/energy spent</h2>
-                            <h3 class="fragment">Used in <a href="https://link.springer.com/chapter/10.1007/978-3-032-36217-9_26">Energy-Efficient AI-Assisted Evolution: A Case Study on Minimizing the Power Consumption
-                                of Deep Neural Crossover</a>, presented
-                                tomorrow</h3>
-
-                            <aside class="notes">It's always heuristic, so your
-                                best bet is always strategize, measure, model and decide</aside>
                         </section>
 
                     </section>
